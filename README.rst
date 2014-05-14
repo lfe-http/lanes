@@ -2,6 +2,7 @@
 lfest
 ###########
 
+*REST macros and code for LFE on YAWS*
 
 Introduction
 ============
