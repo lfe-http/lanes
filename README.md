@@ -1,6 +1,6 @@
-###########
-lfest
-###########
+# lfest [![Build Status](https://travis-ci.org/lfe/lfest.png?branch=master)](https://travis-ci.org/lfe/lfest)
+
+<img src="resources/images/Banners-And-Confetti.png"/>
 
 *REST macros and code for LFE on YAWS*
 
