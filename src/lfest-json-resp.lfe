@@ -63,8 +63,8 @@
     (lfest-codes:method-not-allowed)
     "method not allowed"))
 
-(defun ok ()
-  (lfest-resp:ok (json-result "\"ok\"")))
-
 (defun ok (content)
-  (lfest-resp:ok (json-content content)))
+  (lfest-resp:ok (json-text-content content)))
+
+(defun ok ()
+  (ok "ok"))
