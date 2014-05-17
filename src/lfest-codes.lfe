@@ -1,3 +1,6 @@
+(defmodule lfest-codes
+  (export all))
+
 ; HTTP 1xx
 (defun continue () 100)
 (defun switching-protocols () 101)
