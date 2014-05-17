@@ -2,7 +2,8 @@
 
 <img src="resources/images/Banners-And-Confetti.png"/>
 
-*REST macros and code for LFE on YAWS*
+*Macros and functions for LFE+REST on YAWS*
+
 
 Introduction
 ============
@@ -13,14 +14,15 @@ REST is a party, and you know it.
 Dependencies
 ------------
 
-This project assumes that you have `rebar`_ installed somwhere in your
-``$PATH``.
+This project assumes that you have [rebar](https://github.com/rebar/rebar)
+and [lfetool]() installed somwhere in your ``$PATH``.
 
-This project depends upon the following, which are installed to the ``deps``
-directory of this project when you run ``make deps``:
+This project depends upon the following, which are automatically installed
+to the ``deps`` directory of this project when you run ``make compile``:
 
-* `LFE`_ (Lisp Flavored Erlang; needed only to compile)
-* `lfeunit`_ (needed only to run the unit tests)
+* [LFE](https://github.com/rvirding/lfe) - Lisp Flavored Erlang; needed to
+  compile
+* [YAWS]() - needed for the header file
 
 
 Installation
@@ -28,20 +30,26 @@ Installation
 
 Just add it to your ``rebar.config`` deps:
 
-.. code:: erlang
+```erlang
 
-    {deps, [
-        ...
-        {lfest, ".*", {git, "git@github.com:YOURNAME/lfest.git", "master"}}
-      ]}.
+{deps, [
+    ...
+    {lfest, ".*", {git, "git@github.com:lfe/lfest.git", "master"}}
+  ]}.
+```
 
+If you have created your project with ``lfetool``, you can download
+``lfeest`` with the following:
 
-And then do the usual:
+```bash
+$ rebar get-deps
+```
 
-.. code:: bash
+Or, you can have it download automatically when you compeile:
 
-    $ rebar get-deps
-    $ rebar compile
+```bash
+$ rebar compile
+```
 
 
 Usage
@@ -49,8 +57,22 @@ Usage
 
 Add content to me here!
 
-.. Links
-.. -----
-.. _rebar: https://github.com/rebar/rebar
-.. _LFE: https://github.com/rvirding/lfe
-.. _lfeunit: https://github.com/lfe/lfeunit
+
+Concepts
+========
+
+lfest needs to provide YAWS with an ``out/1`` function, and YAWS will
+call this function with one argument: the YAWS ``arg`` record data. Since
+this function is the entry point for applications running under YAWS, it is
+responsible for determining how to process all requests.
+
+
+
+Here's how lfest expects you to create your
+
+In order to make this work, you need to do the following:
+
+1. Update your yaws.conf file with an ``<appmods ...>`` directive that
+   associates a module with a path.
+1. Define your routes using the ``defroutes`` macro from ``lfeet``.
+1. Update your module with an ``out/1`` function which calls the macro-generated ``routes/3`` function.
