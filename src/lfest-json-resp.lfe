@@ -7,39 +7,61 @@
 (defun json-result (data)
   (json-content (++ "{\"result\": " data "}")))
 
-(defun created ()
-  (lfest-resp:response
-    (lfest-codes:created)
-    (json-result "\"created\"")))
+(defun json-text-result (text)
+  (json-content (++ "{\"result\": \"" text "\"}")))
 
-(defun created (location)
+(defun created (message)
   (lfest-resp:response
     (lfest-codes:created)
-    (json-result
-      "\"created\"")
-      (list (lfest:make-header 'location location))))
+    (json-text-result message)))
+
+(defun created (message location)
+  (lfest-resp:response
+    (lfest-codes:created)
+    (json-text-result message)
+    (list (lfest:make-header 'location location))))
+
+(defun created ()
+  (created "created"))
+
+(defun updated (message)
+  (lfest-resp:response
+    (lfest-codes:no-content)
+    (json-text-result message)))
 
 (defun updated ()
+  (updated "updated"))
+
+(defun deleted (message)
   (lfest-resp:response
     (lfest-codes:no-content)
-    (json-result "\"updated\"")))
+    (json-text-result message)))
 
 (defun deleted ()
-  (lfest-resp:response
-    (lfest-codes:no-content)
-    (json-result "\"deleted\"")))
-
-(defun response (status-code content)
-  `(#(status ,status-code) ,content))
+  (deleted "deleted"))
 
 (defun error (status-code message)
-  (response (json-result (++ "{\"error\": \"" message "\"}"))))
+  (lfest-resp:response
+    status-code
+    (json-result (++ "{\"error\": \"" message "\"}"))))
 
-(defun error (status)
-  (error status "internal server error"))
+(defun error ()
+  (error
+    (lfest-codes:internal-server-error)
+    "internal server error"))
+
+(defun not-found (message)
+  (error
+    (lfest-codes:not-found)
+    message))
 
 (defun not-found ()
-  (error (lfest-codes:not-found) "not found"))
+  (not-found "not found"))
+
+(defun method-not-allowed ()
+  (error
+    (lfest-codes:method-not-allowed)
+    "method not allowed"))
 
 (defun ok ()
   (lfest-resp:ok (json-result "\"ok\"")))
