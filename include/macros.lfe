@@ -1,22 +1,6 @@
-;; We need 3 functions of different arities:
-;;    routes/2 - NOTFOUND expr
-;;    routes/3 - METHOD path expr
-;;    routes/3 - FORBIDDEN method-list
-;;    routes/4 - METHOD path args expr
-
-
-; (defroutes handler
-;   (POST "/order"
-;         (create-order))
-;   (GET "/order/:id" (id)
-;        (get-order id))
-;   )
-
-;; XXX this macro should probably be moved into lfe-utils ...
 (defmacro in (item collection)
   `(orelse ,@(lists:map (lambda (x) `(=== ,x ,item)) collection)))
 
-;; XXX this macro should probably be moved into lfe-utils ...
 (defmacro not-in (item collection)
   `(not (in ,item ,collection)))
 
@@ -44,7 +28,7 @@
     execute; before it are the method, the path, and the data from YAWS.
 
     We need to re-form each route as a function head pattern and the
-    expression for that pattern."
+    expression (function to call or output to render) for that pattern."
     (let* (((cons tail rev-head) (lists:reverse elements))
            (head (lists:reverse rev-head)))
       (case (eval (car head))
