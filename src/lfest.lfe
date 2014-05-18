@@ -3,11 +3,8 @@
 
 (include-lib "yaws/include/yaws_api.hrl")
 
-(defun parse-path
-  (('undefined)
-   '())
-  ((arg-data)
-   (string:tokens (get-path-info arg-data) "/")))
+(defun parse-path (arg-data)
+  (string:tokens (get-path-info arg-data) "/"))
 
 (defun make-header (key value)
   "Makes a header tuple in the format required by YAWS."
@@ -30,7 +27,10 @@
 (defun get-path-info (arg-data)
   "Use the LFE record macros to extract the path info from the records defined
   in yaws_api.hrl."
-  (arg-pathinfo arg-data))
+  (let ((path-info (arg-pathinfo arg-data)))
+    (case path-info
+      ('undefined '())
+      (_ path-info))))
 
 (defun get-data (arg-data)
   "Use the LFE record macros to extract the path info from the records defined
