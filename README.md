@@ -59,6 +59,8 @@ Create your application/service routes with the ``(defroutes ...)`` form.
 Here is an example:
 
 ```cl
+(include-lib "deps/lfest/include/macros.lfe")
+
 (defroutes
   ;; top-level
   ('GET "/"
