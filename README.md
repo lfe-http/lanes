@@ -42,13 +42,13 @@ If you have created your project with ``lfetool``, you can download
 ``lfeest`` with the following:
 
 ```bash
-$ rebar get-deps
+$ make get-deps
 ```
 
-Or, you can have it download automatically when you compeile:
+Or, you can have it download automatically when you compile:
 
 ```bash
-$ rebar compile
+$ make compile
 ```
 
 
@@ -68,24 +68,22 @@ Here is an example:
   ;; single order operations
   ('POST "/order"
          (create-order (lfest:get-data arg-data)))
-  ;; XXX next up in hacking tasks: change 124 in the url to :id and then
-  ;; do some crazy parsing in the macros
-  ('GET "/order/124"
-        (get-order 124))
-  ('PUT "/order/124"
-        (update-order 124 (lfest:get-data arg-data)))
-  ('DELETE "/order/124"
-           (delete-order 124))
+  ('GET "/order/:id"
+        (get-order id))
+  ('PUT "/order/:id"
+        (update-order id (lfest:get-data arg-data)))
+  ('DELETE "/order/:id"
+           (delete-order id))
   ;; order collection operations
   ('GET "/orders"
         (get-orders))
   ;; payment operations
-  ('GET "/payment/order/124"
-        (get-payment-status 124))
-  ('PUT "/payment/order/124"
-        (make-payment 124 (lfest:get-data arg-data)))
+  ('GET "/payment/order/:id"
+        (get-payment-status id))
+  ('PUT "/payment/order/:id"
+        (make-payment id (lfest:get-data arg-data)))
   ;; error conditions
-  ('FORBIDDEN
+  ('ALLOWONLY
     ('GET 'POST 'PUT 'DELETE)
     (lfest-json-resp:method-not-allowed))
   ('NOTFOUND
@@ -94,6 +92,18 @@ Here is an example:
 
 Note that this creates the ``#'routes/3`` function which can then be called
 in the ``out/1`` function.
+
+A few important things to note here:
+
+* Each route is composed of an HTTP verb, a path, and a function to execute
+  should both the verb and path match.
+* The function call in the route has access to the ``arg-data`` passed from
+  YAWS; this contains all the data you could conceivably need to process a
+  request. (You may need to import the ``yaws_api.hrl`` in your module to
+  parse the data of your choice, though.)
+* If a path has a segment preceded by a colon, this will be converted to a
+  variable by the ``(defroutes ...)`` macro; the variable will then be
+  accessible from the route function.
 
 
 Concepts
