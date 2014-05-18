@@ -2,13 +2,20 @@
 
 <img src="resources/images/Banners-And-Confetti.png"/>
 
-*Macros and functions for LFE+REST on YAWS*
+*Macros and functions for routing apps and services in LFE+Yaws*
 
 
 Introduction
 ============
 
 REST is a party, and you know it.
+
+The name started with more than just a party reference: the intent was for
+this library to be used to develop RESTful services more easily by having
+one's routes more clear: LFe rEpresentational State Transfer.
+
+But the web is more than REST, so everybody gets to play. The name's staying,
+though.
 
 
 Dependencies
@@ -64,24 +71,24 @@ Here is an example:
 (defroutes
   ;; top-level
   ('GET "/"
-        (lfest-html-resp:ok "Welcome to the Volvo Store!"))
+    (lfest-html-resp:ok "Welcome to the Volvo Store!"))
   ;; single order operations
   ('POST "/order"
-         (create-order (lfest:get-data arg-data)))
+    (create-order (lfest:get-data arg-data)))
   ('GET "/order/:id"
-        (get-order id))
+    (get-order id))
   ('PUT "/order/:id"
-        (update-order id (lfest:get-data arg-data)))
+    (update-order id (lfest:get-data arg-data)))
   ('DELETE "/order/:id"
-           (delete-order id))
+    (delete-order id))
   ;; order collection operations
   ('GET "/orders"
-        (get-orders))
+    (get-orders))
   ;; payment operations
   ('GET "/payment/order/:id"
-        (get-payment-status id))
+    (get-payment-status id))
   ('PUT "/payment/order/:id"
-        (make-payment id (lfest:get-data arg-data)))
+    (make-payment id (lfest:get-data arg-data)))
   ;; error conditions
   ('ALLOWONLY
     ('GET 'POST 'PUT 'DELETE)
