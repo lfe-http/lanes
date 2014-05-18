@@ -90,7 +90,7 @@ Here is an example:
     (lfest-json-resp:not-found "Bad path: invalid operation.")))
 ```
 
-Note that this creates the ``#'routes/3`` function which can then be called
+Note that this creates the ``routes/3`` function which can then be called
 in the ``out/1`` function.
 
 A few important things to note here:
