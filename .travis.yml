@@ -1,11 +1,10 @@
 language: erlang
 script: "make check-travis"
 notifications:
-  #irc: "irc.freenode.org#YOUR-PROJECT-CHANNEL"
+  irc: "irc.freenode.org#cogitat"
   recipients:
-    #- YOU@YOUR.DOMAIN
+    - duncan@cogitat.io
 otp_release:
+  - 17.0
   - R16B03
   - R15B03
-  # The following isn't yet supported
-  #- 17.0
