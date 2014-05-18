@@ -26,7 +26,7 @@
 
 (defun updated (message)
   (lfest-resp:response
-    (lfest-codes:no-content)
+    (lfest-codes:ok)
     (json-text-result message)))
 
 (defun updated ()
@@ -34,7 +34,7 @@
 
 (defun deleted (message)
   (lfest-resp:response
-    (lfest-codes:no-content)
+    (lfest-codes:ok)
     (json-text-result message)))
 
 (defun deleted ()
@@ -64,7 +64,7 @@
     "method not allowed"))
 
 (defun ok (content)
-  (lfest-resp:ok (json-text-content content)))
+  (lfest-resp:ok (json-text-result content)))
 
 (defun ok ()
   (ok "ok"))
