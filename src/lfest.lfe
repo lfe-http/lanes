@@ -36,3 +36,10 @@
   "Use the LFE record macros to extract the path info from the records defined
   in yaws_api.hrl."
   (arg-clidata arg-data))
+
+(defun out-helper (arg-data router)
+  "This is intended to be called by your application's 'out' function that is
+  called by YAWS."
+  (let ((method-name (get-http-method arg-data))
+        (path-info (parse-path arg-data)))
+    (funcall router method-name path-info arg-data)))
