@@ -103,8 +103,8 @@ A few important things to note here:
   parse the data of your choice, though.)
 * If a path has a segment preceded by a colon, this will be converted to a
   variable by the ``(defroutes ...)`` macro; the variable will then be
-  accessible from the route function.
-* The ``(defroutes ...)`` mamcro generates the ``routes/3`` function; it's
+  accessible from the function you provide in that route.
+* The ``(defroutes ...)`` macro generates the ``routes/3`` function; it's
   three arguments are the HTTP verb (method name), the path info (a list of
   path segments, with the ``":varname"`` segments converted to ``varname``/
   variable segments), and then the ``arg-data`` variable from YAWS.
