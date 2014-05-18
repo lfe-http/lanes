@@ -17,4 +17,8 @@
 (defun error (content)
   (response (lfest-codes:internal-server-error) content))
 
+(defun not-found (content)
+  (response (lfest-codes:not-found) content))
 
+(defun ok (content)
+  (response (lfest-codes:ok) content))
