@@ -5,4 +5,4 @@ Expm.Package.new(
   keywords: ["LFE", "Lisp", "Library", "API", "HTTP", "HTML",
              "YAWS", "Routes", "Routing"],
   maintainers: [[name: "Duncan McGreggor", email: "duncan@cogitat.io"]],
-  repositories: [[github: "lfe/lfest"]])
+  repositories: [[github: "lfex/lfest"]])
