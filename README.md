@@ -1,4 +1,4 @@
-# lfest [![Build Status](https://travis-ci.org/lfe/lfest.png?branch=master)](https://travis-ci.org/lfe/lfest)
+# lfest [![Build Status](https://travis-ci.org/lfex/lfest.png?branch=master)](https://travis-ci.org/lfex/lfest)
 
 <img src="resources/images/Banners-And-Confetti.png"/>
 
