@@ -41,7 +41,7 @@ Just add it to your ``rebar.config`` deps:
 
 {deps, [
     ...
-    {lfest, ".*", {git, "git@github.com:lfe/lfest.git", "master"}}
+    {lfest, ".*", {git, "git@github.com:lfex/lfest.git", "master"}}
   ]}.
 ```
 
