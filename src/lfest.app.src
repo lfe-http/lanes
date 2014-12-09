@@ -1,5 +1,5 @@
 %% -*- erlang -*-
-{application, 'lfest',
+{application, lfest,
  [
   %% A quick description of the application.
   {description, "Macros and functions for routing apps and services in LFE+Yaws"},
@@ -10,7 +10,7 @@
   %% All modules used by the application.
   {modules,
    [
-    'lfest'
+    lfest
    ]},
 
   %% All of the registered names the application uses. This can be ignored.
