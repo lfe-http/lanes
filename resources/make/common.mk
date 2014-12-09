@@ -25,7 +25,7 @@ LFETOOL=$(BIN_DIR)/lfetool
 else
 LFETOOL=lfetool
 endif
-ERL_LIBS=.:..:../$(PROJECT):$(shell $(LFETOOL) info erllibs)
+ERL_LIBS=../$(PROJECT):$(shell $(LFETOOL) info erllibs)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
@@ -98,7 +98,7 @@ clean: clean-ebin clean-eunit
 	@which rebar.cmd >/dev/null 2>&1 && rebar.cmd clean || rebar clean
 
 check-unit-only:
-	@PATH=$(SCRIPT_PATH) ERL_LIBS=$(ERL_LIBS) $(LFETOOL) tests unit
+	PATH=$(SCRIPT_PATH) ERL_LIBS=$(ERL_LIBS) $(LFETOOL) tests unit
 
 check-integration-only:
 	@PATH=$(SCRIPT_PATH) ERL_LIBS=$(ERL_LIBS) $(LFETOOL) tests integration
