@@ -23,7 +23,7 @@ LFETOOL=$(BIN_DIR)/lfetool
 else
 LFETOOL=lfetool
 endif
-ERL_LIBS=../$(PROJECT):$(shell $(LFETOOL) info erllibs)
+ERL_LIBS=$(shell pwd):$(shell $(LFETOOL) info erllibs)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
@@ -43,7 +43,6 @@ get-version:
 get-deps:
 	@echo "Getting dependencies ..."
 	@which rebar.cmd >/dev/null 2>&1 && rebar.cmd get-deps || rebar get-deps
-	@PATH=$(SCRIPT_PATH) $(LFETOOL) update deps
 
 clean-ebin:
 	@echo "Cleaning ebin dir ..."
