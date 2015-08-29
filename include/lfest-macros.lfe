@@ -9,7 +9,7 @@
 (eval-when-compile
 
   (defun check-segment
-    (((cons colon var-name)) (when (=:= colon 58))
+    (((cons colon var-name)) (when (=:= colon #\:))
      (list_to_atom var-name))
     ((seg)
      seg))
