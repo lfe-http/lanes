@@ -97,8 +97,9 @@ Here is an example:
     (lfest-json-resp:not-found "Bad path: invalid operation.")))
 ```
 
-Note that this creates the ``routes/3`` function which can then be called
+Note that this creates a ``routes/3`` function which can then be called
 in the ``out/1`` function that is required of a [YAWS appmod](http://yaws.hyber.org/appmods.yaws) module.
+For an example of this in action, see [this mini REST-api](https://github.com/lfex/yaws-rest-starter/blob/master/src/yrests-store-3.lfe).
 
 A few important things to note here:) 
 
