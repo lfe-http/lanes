@@ -98,9 +98,9 @@ Here is an example:
 ```
 
 Note that this creates the ``routes/3`` function which can then be called
-in the ``out/1`` function.
+in the ``out/1`` function that is required of a [YAWS appmod](http://yaws.hyber.org/appmods.yaws) module.
 
-A few important things to note here:
+A few important things to note here:) 
 
 * Each route is composed of an HTTP verb, a path, and a function to execute
   should both the verb and path match.
