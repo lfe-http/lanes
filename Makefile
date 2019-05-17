@@ -16,7 +16,7 @@ compile:
 	rebar3 compile
 
 check:
-	@rebar3 as test eunit
+	@DEBUG=1 rebar3 as test eunit
 
 repl: compile
 	@$(LFE)

@@ -1,12 +1,17 @@
-# lfest [![Build Status](https://travis-ci.org/lfex/lfest.png?branch=master)](https://travis-ci.org/lfex/lfest)
+# lfest
 
-<img src="resources/images/Banners-And-Confetti.png"/>
+[![Build Status][travis badge]][travis]
+[![LFE Versions][lfe badge]][lfe]
+[![Erlang Versions][erlang badge]][versions]
+[![Tags][github tags badge]][github tags]
+[![Downloads][hex downloads]][hex package]
+
+[![][logo]][logo-large]
 
 *Macros and functions for routing apps and services in LFE+Yaws*
 
 
-Introduction
-============
+## Introduction
 
 REST is a party, and you know it.
 
@@ -18,8 +23,7 @@ But the web is more than REST, so everybody gets to play. The name's staying,
 though.
 
 
-Dependencies
-------------
+## Dependencies
 
 This project assumes that you have [rebar](https://github.com/rebar/rebar)
 and [lfetool]() installed somwhere in your ``$PATH``.
@@ -32,8 +36,7 @@ to the ``deps`` directory of this project when you run ``make compile``:
 * [YAWS]() - needed for the header file
 
 
-Installation
-============
+## Installation
 
 Just add it to your ``rebar.config`` deps:
 
@@ -118,8 +121,7 @@ A few important things to note here:)
   variable segments), and then the ``arg-data`` variable from YAWS.
 
 
-Concepts
-========
+## Concepts
 
 lfest needs to provide YAWS with an ``out/1`` function. The location of this
 function is configured in your ``etc/yaws.conf`` file in the
@@ -171,3 +173,30 @@ a ``.beam``:
 
 When it is compiled, the ``routes/3`` function is available for use from
 wherever you have defined your routes.
+
+## License [&#x219F;](#contents)
+
+Apache Version 2 License
+
+Copyright © 2014-2019, Duncan McGreggor <oubiwann@gmail.com>
+
+
+[](Named page links below ...)
+
+[logo]: resources/images/Banners-And-Confetti.png
+[logo-large]: resources/images/Banners-And-Confetti.png
+[org]: https://github.com/lfex
+[github]: https://github.com/lfex/lfest
+[gitlab]: https://gitlab.com/lfex/lfest
+[travis]: https://travis-ci.org/lfex/lfest
+[travis badge]: https://img.shields.io/travis/lfex/lfest.svg
+[lfe]: https://github.com/rvirding/lfe
+[lfe badge]: https://img.shields.io/badge/lfe-1.3.0-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-17.5%20to%2022.0-blue.svg
+[versions]: https://github.com/lfex/lfest/blob/master/.travis.yml
+[github tags]: https://github.com/lfex/lfest/tags
+[github tags badge]: https://img.shields.io/github/tag/lfex/lfest.svg
+[github downloads]: https://img.shields.io/github/downloads/lfex/lfest/total.svg
+[hex badge]: https://img.shields.io/hexpm/v/lfest.svg?maxAge=2592000
+[hex package]: https://hex.pm/packages/lfest
+[hex downloads]: https://img.shields.io/hexpm/dt/lfest.svg
