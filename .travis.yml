@@ -9,4 +9,6 @@ otp_release:
   - 20.3
   - 19.3
   - 18.3
-  - 17.5
+  # XXX 17.5 is disabled due to an issue with reading records from YAWS; for 
+  #     more context, see: https://github.com/rvirding/lfe/issues/380
+  # - 17.5

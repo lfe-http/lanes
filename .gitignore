@@ -8,3 +8,5 @@ ebin/*
 bin/expm
 *.dump
 .rebar
+_checkouts
+rebar3.crash*
