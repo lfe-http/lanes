@@ -9,7 +9,7 @@
 (eval-when-compile
 
   (defun handle-segment
-    ((`(#\: . ,var-name))
+    (((cons #\: var-name))
      (list_to_atom var-name))
     ((seg)
      seg))
