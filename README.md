@@ -1,4 +1,4 @@
-# lfest
+# lanes
 
 [![Build Status][travis badge]][travis]
 [![LFE Versions][lfe badge]][lfe]
@@ -8,68 +8,28 @@
 
 [![][logo]][logo-large]
 
-*Macros and functions for routing apps and services in LFE+Yaws*
+*TBD*
 
 
 ## Introduction
 
-REST is a party, and you know it.
+The lanes project aims to offer some of the YAWS-specific features of the [lfest project](https://github.com/lfex/lfest) to a wider selection of BEAM-based web servers. This is done with the understanding that the original design of lfest (and thus the the design inherited in the lanes project) is not optimal. For more on the potential end-state for routes and request/response handling, see the [lrootes project](https://github.com/lfe-mug/lrootes).
 
-The name started with more than just a party reference: the intent was for
-this library to be used to develop RESTful services more easily by having
-one's routes more clear: LFe rEpresentational State Transfer.
-
-But the web is more than REST, so everybody gets to play. The name's staying,
-though.
-
+For now, though, we are focused on the immediate and practical needs of LFE application developers.
 
 ## Dependencies
 
-This project assumes that you have [rebar](https://github.com/rebar/rebar)
-and [lfetool]() installed somwhere in your ``$PATH``.
-
-This project depends upon the following, which are automatically installed
-to the ``deps`` directory of this project when you run ``make compile``:
-
-* [LFE](https://github.com/rvirding/lfe) - Lisp Flavored Erlang; needed to
-  compile
-* [YAWS]() - needed for the header file
+* Erlang 19+
+* `rebar3`
 
 
-## Installation
-
-Just add it to your ``rebar.config`` deps:
-
-```erlang
-
-{deps, [
-    ...
-    {lfest, ".*", {git, "git@github.com:lfex/lfest.git", "master"}}
-  ]}.
-```
-
-If you have created your project with ``lfetool``, you can download
-``lfeest`` with the following:
-
-```bash
-$ make get-deps
-```
-
-Or, you can have it download automatically when you compile:
-
-```bash
-$ make compile
-```
-
-
-Usage
-=====
+## Usage
 
 Create your application/service routes with the ``(defroutes ...)`` form.
 Here is an example:
 
 ```cl
-(include-lib "deps/lfest/include/macros.lfe")
+(include-lib "lanes/include/yaws.lfe")
 
 (defroutes
   ;; top-level
@@ -99,6 +59,22 @@ Here is an example:
   ('NOTFOUND
     (lfest-json-resp:not-found "Bad path: invalid operation.")))
 ```
+
+### Consuming Routes
+
+#### Cowboy
+
+TBD
+
+#### Elli
+
+TBD
+
+#### Nova
+
+TBD
+
+#### YAWS
 
 Note that this creates a ``routes/3`` function which can then be called
 in the ``out/1`` function that is required of a [YAWS appmod](http://yaws.hyber.org/appmods.yaws) module.
@@ -178,7 +154,7 @@ wherever you have defined your routes.
 
 Apache Version 2 License
 
-Copyright © 2014-2019, Duncan McGreggor <oubiwann@gmail.com>
+Copyright © 2014-2020, Duncan McGreggor <oubiwann@gmail.com>
 
 
 [](Named page links below ...)
