@@ -10,3 +10,8 @@ bin/expm
 .rebar
 _checkouts
 rebar3.crash*
+erl_crash.dump
+*~
+/out
+\#*\#
+.\#*
