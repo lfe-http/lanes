@@ -1,19 +1,18 @@
 # lanes
 
-[![Build Status][travis badge]][travis]
+[![Build Status][gh-actions-badge]][gh-actions]
 [![LFE Versions][lfe badge]][lfe]
 [![Erlang Versions][erlang badge]][versions]
 [![Tags][github tags badge]][github tags]
-[![Downloads][hex downloads]][hex package]
 
 [![][logo]][logo-large]
 
-*TBD*
+*A slightly more general HTTP routing library than LFE's lfest*
 
 
 ## Introduction
 
-The lanes project aims to offer some of the YAWS-specific features of the [lfest project](https://github.com/lfex/lfest) to a wider selection of BEAM-based web servers. This is done with the understanding that the original design of lfest (and thus the the design inherited in the lanes project) is not optimal. For more on the potential end-state for routes and request/response handling, see the [lrootes project](https://github.com/lfe-mug/lrootes).
+The lanes project aims to offer some of the YAWS-specific features of the [lfest project](https://github.com/lfex/lfest) to a wider selection of BEAM-based web servers. This is done with the understanding that the original design of lfest (and thus the design inherited in the lanes project) is not optimal. For more on the potential end-state for routes and request/response handling in LFE web applications, see the [lrootes project](https://github.com/lfe-mug/lrootes).
 
 For now, though, we are focused on the immediate and practical needs of LFE application developers.
 
@@ -34,14 +33,14 @@ Here is an example:
 (defroutes
   ;; top-level
   ('GET "/"
-    (lfest-html-resp:ok "Welcome to the Volvo Store!"))
+    (lanes.yaws.response.html:ok "Welcome to the Volvo Store!"))
   ;; single order operations
   ('POST "/order"
-    (create-order (lfest:get-data arg-data)))
+    (create-order (lanes.yaws:get-data arg-data)))
   ('GET "/order/:id"
     (get-order id))
   ('PUT "/order/:id"
-    (update-order id (lfest:get-data arg-data)))
+    (update-order id (lanes.yaws:client-data arg-data)))
   ('DELETE "/order/:id"
     (delete-order id))
   ;; order collection operations
@@ -51,13 +50,13 @@ Here is an example:
   ('GET "/payment/order/:id"
     (get-payment-status id))
   ('PUT "/payment/order/:id"
-    (make-payment id (lfest:get-data arg-data)))
+    (make-payment id (lanes.yaws:client-data arg-data)))
   ;; error conditions
   ('ALLOWONLY
     ('GET 'POST 'PUT 'DELETE)
-    (lfest-json-resp:method-not-allowed))
+    (lanes.yaws.response.json:method-not-allowed))
   ('NOTFOUND
-    (lfest-json-resp:not-found "Bad path: invalid operation.")))
+    (lanes.yaws.response.json:not-found "Bad path: invalid operation.")))
 ```
 
 ### Consuming Routes
@@ -76,79 +75,43 @@ TBD
 
 #### YAWS
 
-Note that this creates a ``routes/3`` function which can then be called
-in the ``out/1`` function that is required of a [YAWS appmod](http://yaws.hyber.org/appmods.yaws) module.
+Note that this creates a `routes/3` function which can then be called
+in the `out/1` function that is required of a [YAWS appmod](http://yaws.hyber.org/appmods.yaws) module.
 For an example of this in action, see [this mini REST-api](https://github.com/lfex/yaws-rest-starter/blob/master/src/yrests-store-3.lfe).
 
 A few important things to note here:) 
 
 * Each route is composed of an HTTP verb, a path, and a function to execute
   should both the verb and path match.
-* The function call in the route has access to the ``arg-data`` passed from
+* The function call in the route has access to the `arg-data` passed from
   YAWS; this contains all the data you could conceivably need to process a
-  request. (You may need to import the ``yaws_api.hrl`` in your module to
+  request. (You may need to import the `yaws_api.hrl` in your module to
   parse the data of your choice, though.)
 * If a path has a segment preceded by a colon, this will be converted to a
-  variable by the ``(defroutes ...)`` macro; the variable will then be
+  variable by the `(defroutes ...)` macro; the variable will then be
   accessible from the function you provide in that route.
-* The ``(defroutes ...)`` macro generates the ``routes/3`` function; it's
+* The `(defroutes ...)` macro generates the `routes/3` function; it's
   three arguments are the HTTP verb (method name), the path info (a list of
-  path segments, with the ``":varname"`` segments converted to ``varname``/
-  variable segments), and then the ``arg-data`` variable from YAWS.
+  path segments, with the `":varname"` segments converted to`varname`/
+  variable segments), and then the `arg-data` variable from YAWS.
 
 
 ## Concepts
 
-lfest needs to provide YAWS with an ``out/1`` function. The location of this
-function is configured in your ``etc/yaws.conf`` file in the
-``<appmods ...>`` directives (it can be repeated for supporting multiple
+lanes needs to provide YAWS with an `out/1` function. The location of this
+function is configured in your `etc/yaws.conf` file in the
+`<appmods ...>` directives (it can be repeated for supporting multiple
 endpoints).
 
-YAWS will call this function with one argument: the YAWS ``arg`` record
+YAWS will call this function with one argument: the YAWS `arg` record
 data. Since this function is the entry point for applications running under
 YAWS, it is responsible for determining how to process all requests.
 
-The ``out/1`` function in lfest-based apps calls the ``routes/3`` function
-generated by the ``(defroutes ...)`` mamcro.
+The `out/1` function in lane+YAWS-based apps calls the `routes/3` function
+generated by the `(defroutes ...)` lanes/YAWS mamcro.
 
-The route definition macro does some pretty heavy remixing of the routes
-defined in ``(defroutes ...)``. The route definition given in the "Usage"
-section above actually expands to the following LFE before being compiled to
-a ``.beam``:
-
-```cl
- #((define-function routes
-     (match-lambda
-       (('GET () arg-data)
-        (call 'lfest-html-resp 'ok "Welcome to the Volvo Store!"))
-       (('POST ("order") arg-data)
-        (create-order (call 'lfest 'get-data arg-data)))
-       (('GET ("order" id) arg-data) (get-order id))
-       (('PUT ("order" id) arg-data)
-        (update-order id (call 'lfest 'get-data arg-data)))
-       (('DELETE ("order" id) arg-data) (delete-order id))
-       (('GET ("orders") arg-data) (get-orders))
-       (('GET ("payment" "order" id) arg-data) (get-payment-status id))
-       (('PUT ("payment" "order" id) arg-data)
-        (make-payment id (call 'lfest 'get-data arg-data)))
-       ((method p a)
-        (when
-         (not
-          (if (call 'erlang '=:= 'GET method)
-            'true
-            (if (call 'erlang '=:= 'POST method)
-              'true
-              (if (call 'erlang '=:= 'PUT method)
-                'true
-                (call 'erlang '=:= 'DELETE method))))))
-        (call 'lfest-json-resp 'method-not-allowed))
-       ((method path arg-data)
-        (call 'lfest-json-resp 'not-found "Bad path: invalid operation."))))
-   6)
-```
-
-When it is compiled, the ``routes/3`` function is available for use from
-wherever you have defined your routes.
+When a lanes-based project is compiled, the `routes/3` function is available for use via
+whatever modules have defined routes with `defroutes`.
 
 ## License [&#x219F;](#contents)
 
@@ -157,22 +120,19 @@ Apache Version 2 License
 Copyright © 2014-2020, Duncan McGreggor <oubiwann@gmail.com>
 
 
-[](Named page links below ...)
+<!-- Named page links below: /-->
 
-[logo]: resources/images/Banners-And-Confetti.png
-[logo-large]: resources/images/Banners-And-Confetti.png
+[logo]: priv/images/logo.jpg
+[logo-large]: priv/images/logo-large.jpg
 [org]: https://github.com/lfex
-[github]: https://github.com/lfex/lfest
-[gitlab]: https://gitlab.com/lfex/lfest
-[travis]: https://travis-ci.org/lfex/lfest
-[travis badge]: https://img.shields.io/travis/lfex/lfest.svg
+[github]: https://github.com/lfex/lanes
+[gitlab]: https://gitlab.com/lfex/lanes
+[gh-actions-badge]: https://github.com/lfex/lanes/workflows/ci%2Fcd/badge.svg
+[gh-actions]: https://github.com/lfex/lanes/actions
 [lfe]: https://github.com/rvirding/lfe
-[lfe badge]: https://img.shields.io/badge/lfe-1.3.0-blue.svg
-[erlang badge]: https://img.shields.io/badge/erlang-17.5%20to%2022.0-blue.svg
-[versions]: https://github.com/lfex/lfest/blob/master/.travis.yml
-[github tags]: https://github.com/lfex/lfest/tags
-[github tags badge]: https://img.shields.io/github/tag/lfex/lfest.svg
-[github downloads]: https://img.shields.io/github/downloads/lfex/lfest/total.svg
-[hex badge]: https://img.shields.io/hexpm/v/lfest.svg?maxAge=2592000
-[hex package]: https://hex.pm/packages/lfest
-[hex downloads]: https://img.shields.io/hexpm/dt/lfest.svg
+[lfe badge]: https://img.shields.io/badge/lfe-2.0-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-19.5%20to%2023.0-blue.svg
+[versions]: https://github.com/lfex/lanes/blob/master/.github/workflows/cicd.yml
+[github tags]: https://github.com/lfex/lanes/tags
+[github tags badge]: https://img.shields.io/github/tag/lfex/lanes.svg
+[github downloads]: https://img.shields.io/github/downloads/lfex/lanes/total.svg

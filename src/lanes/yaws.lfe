@@ -1,4 +1,4 @@
-(defmodule lfest
+(defmodule lanes.yaws
   (export all))
 
 (include-lib "yaws/include/yaws_api.hrl")
@@ -59,21 +59,21 @@
   DEPRECATED: use the `request` function instead."
   (request arg-data))
 
-  (defun get-querydata (arg-data)
+(defun get-querydata (arg-data)
   "Use the LFE record macros to extract any query parameters from the records
   defined in yaws_api.hrl.
 
   DEPRECATED: use the `query-data` function instead."
   (query-data arg-data))
 
-  (defun get-path-info (arg-data)
+(defun get-path-info (arg-data)
   "Use the LFE record macros to extract the path info from the records defined
   in yaws_api.hrl.
 
   DEPRECATED: use the `path-info` function instead."
   (path-info arg-data))
 
-  (defun get-data (arg-data)
+(defun get-data (arg-data)
   "Use the LFE record macros to extract the path info from the records defined
   in yaws_api.hrl.
 

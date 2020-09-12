@@ -1,4 +1,4 @@
-(defmodule lfest-resp
+(defmodule lanes.yaws.response
   (export all))
 
 (defun content (content-type content)
@@ -15,10 +15,10 @@
   (++ (response status-code content) headers))
 
 (defun error (content)
-  (response (lfest-codes:internal-server-error) content))
+  (response (lanes.http-codes:internal-server-error) content))
 
 (defun not-found (content)
-  (response (lfest-codes:not-found) content))
+  (response (lanes.http-codes:not-found) content))
 
 (defun ok (content)
-  (response (lfest-codes:ok) content))
+  (response (lanes.http-codes:ok) content))

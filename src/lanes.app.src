@@ -1,0 +1,25 @@
+%% -*- erlang -*-
+{application, lanes,
+ [
+  {description, "A slightly more general HTTP routing library than LFE's lfest "},
+
+  {vsn, "0.1.0"},
+
+  {modules,
+   [
+    lanes
+   ]},
+
+  {registered, []},
+
+  {applications,
+   [
+    kernel,
+    stdlib
+   ]},
+
+  {included_applications, []},
+
+  {env, []}
+ ]
+}.

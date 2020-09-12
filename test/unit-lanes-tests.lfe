@@ -1,4 +1,4 @@
-(defmodule unit-lfest-tests
+(defmodule unit-lanes-tests
   (behaviour ltest-unit)
   (export all))
 

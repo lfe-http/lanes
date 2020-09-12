@@ -1,4 +1,4 @@
-(defmodule lfest-codes
+(defmodule lanes.http-codes
   (export all))
 
 ; HTTP 1xx
