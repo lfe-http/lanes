@@ -1,5 +1,7 @@
 (defmodule lanes.elli.util
   (export
+   (compile-route 1)
+   (compile-routes 1)
    (make-handler-pattern 1) (make-handler-pattern 2)
    (parse-path 1)
    ))
