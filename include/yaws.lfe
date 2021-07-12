@@ -8,6 +8,8 @@
 ;; wrapped in (eval-when-compile ...).
 (eval-when-compile
 
+  ;; XXX replace this with the new general purpose function if the same name in
+  ;;     lanes.util
   (defun handle-segment
     (((cons #\: var-name))
      (list_to_atom var-name))

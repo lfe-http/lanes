@@ -1,5 +1,11 @@
 (defmodule lanes.util
-  (export all))
+  (export
+   (version 0)
+   (versions 0))
+  (export
+   (handle-path-segment 1)))
+
+;;; Project Metadata
 
 (defun version ()
   (app-version 'lanes))
@@ -23,3 +29,13 @@
   (case (application:get_key app-name 'vsn)
     (`#(ok ,version) version)
     (default default)))
+
+;;; Routes utility functions
+
+(defun handle-path-segment
+  (((= (cons #\: var-name) seg)) (when (is_list seg))
+   (list_to_atom var-name))
+  (((= (binary ":" (var-name bitstring)) seg)) (when (is_binary seg))
+    (binary_to_atom var-name))
+  ((seg)
+   seg))
