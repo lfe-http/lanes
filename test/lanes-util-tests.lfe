@@ -3,7 +3,6 @@
   (export all))
 
 (include-lib "ltest/include/ltest-macros.lfe")
-(include-lib "lanes/include/elli.lfe")
 
 (deftest handle-path-segment
   (is-equal "a"
