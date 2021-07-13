@@ -45,3 +45,23 @@
             (lanes.util:path->segments #" a/b/c "))
   (is-equal '(#"user" #"update" id)
             (lanes.util:path->segments #"/user/update/:id")))
+
+(deftest hex-octet
+  (is-equal "61"
+            (lanes.util:hex-octet #\a))
+  (is-equal "20"
+            (lanes.util:hex-octet #\ )))
+
+(deftest percent-encode-byte
+  (is-equal "%61"
+            (lanes.util:percent-encode-byte #\a))
+  (is-equal "%20"
+            (lanes.util:percent-encode-byte #\ )))
+
+(deftest encode-uri
+  (is-equal #"a"
+            (lanes.util:encode-uri "a"))
+  (is-equal #"%20"
+            (lanes.util:encode-uri " "))
+  (is-equal #"alice%3aroberts%40host"
+            (lanes.util:encode-uri "alice:roberts@host")))
