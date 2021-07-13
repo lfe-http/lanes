@@ -38,7 +38,7 @@ jobs:
       run: ./rebar3 dialyzer
     - name: Run Unit Tests
       # XXX https://github.com/lfe-rebar3/rebar3_lfe/issues/69 -- have ro compile multiple times; wtf?
-      run: ./rebar3 as test compile; ./rebar3 as test compile; ./rebar3 as test lfe ltest -tunit
+      run: ./rebar3 as test do compile,compile,lfe ltest -tunit
     - name: Run Integration Tests
       run: ./rebar3 as test lfe ltest -tintegration
     - name: Test Coverage
@@ -72,8 +72,8 @@ jobs:
       run: ./rebar3 as elli xref
     - name: Run Unit Tests
       # XXX https://github.com/lfe-rebar3/rebar3_lfe/issues/69 -- have ro compile multiple times; wtf?
-      run: ./rebar3 as test,elli compile; ./rebar3 as test,elli compile; ./rebar3 as test,elli lfe ltest -tunit
+      run: ./rebar3 as test,elli,elli-test do compile,compile,lfe ltest -tunit
     - name: Run Integration Tests
-      run: ./rebar3 as test,elli lfe ltest -tintegration
+      run: ./rebar3 as test,elli,elli-test lfe ltest -tintegration
     - name: Test Coverage
-      run: ./rebar3 as test,elli do proper -c, cover -v --min_coverage=0
+      run: ./rebar3 as test,elli,elli-test do proper -c, cover -v --min_coverage=0
