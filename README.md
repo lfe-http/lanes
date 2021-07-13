@@ -130,7 +130,7 @@ whatever modules have defined routes with `defroutes`.
 
 Apache Version 2 License
 
-Copyright © 2014-2020, Duncan McGreggor <oubiwann@gmail.com>
+Copyright © 2014-2021, Duncan McGreggor <oubiwann@gmail.com>
 
 
 <!-- Named page links below: /-->
@@ -144,7 +144,7 @@ Copyright © 2014-2020, Duncan McGreggor <oubiwann@gmail.com>
 [gh-actions]: https://github.com/lfex/lanes/actions
 [lfe]: https://github.com/rvirding/lfe
 [lfe badge]: https://img.shields.io/badge/lfe-2.0-blue.svg
-[erlang badge]: https://img.shields.io/badge/erlang-19.5%20to%2023.0-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-21%20to%2024-blue.svg
 [versions]: https://github.com/lfex/lanes/blob/master/.github/workflows/cicd.yml
 [github tags]: https://github.com/lfex/lanes/tags
 [github tags badge]: https://img.shields.io/github/tag/lfex/lanes.svg
