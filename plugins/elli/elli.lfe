@@ -2,6 +2,8 @@
   (export
    (get-data 1))
   (export
+   (accepted 0) (accepted 1)
+   (created 0) (created 1)
    (method-not-allowed 0) (method-not-allowed 1)
    (not-found 0) (not-found 1)
    (ok 0) (ok 1)
@@ -23,8 +25,20 @@
 (defun response (status headers body)
   (tuple status headers body))
 
+(defun accepted ()
+  (accepted #"Accepted"))
+
+(defun accepted (body)
+  (response 202 body))
+
+(defun created ()
+  (created #"Created"))
+
+(defun created (body)
+  (response 201 body))
+
 (defun ok ()
-  (ok "OK"))
+  (ok #"OK"))
 
 (defun ok (body)
   (response 200 body))
@@ -36,7 +50,7 @@
   (response 405 body))
 
 (defun not-found ()
-  (not-found "Not Found"))
+  (not-found #"Not Found"))
 
 (defun not-found (body)
   (response 404 body))

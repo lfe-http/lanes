@@ -2,44 +2,32 @@
   (export
    (compile-route 1)
    (compile-routes 1)
-   (make-handler-pattern 1) (make-handler-pattern 2)
-   (parse-path 1)
-   ))
+   (make-handler-pattern 1) (make-handler-pattern 2)))
 
-(defun parse-path (path-segments)
-  (lists:map
-   #'lanes.util:handle-path-segment/1
-   path-segments))
+(defun not-in (item collection)
+  `(not (orelse ,@(lists:map (lambda (x) `(== ,x ,item)) collection))))
 
 (defun make-handler-pattern
   (('NOTFOUND)
    (list '_ '_ 'req)))
 
 (defun make-handler-pattern
-  ((method path-segments)
-   (list method (parse-path path-segments) 'req)))
+  ((method path)
+   (list method `(list ,@(lanes.util:path->segments path)) 'req)))
 
 (defun compile-route
   "For each form passed, the last element is always the expression to
-    execute; before it are the method, the path, and the data from YAWS.
+  execute; before it are the method, the path segments, and the request.
 
-    We need to re-form each route as a function head pattern and the
-    expression (function to call or output to render) for that pattern."
+  We need to re-form each route as a function head pattern and the
+  expression (function to call or output to render) for that pattern."
   ((`('ALLOWONLY ,methods ,expr))
-   `((method path arg-data) (when (not-in method ,methods))
+   `((method _segments _req) (when ,(not-in 'method methods))
      ,expr))
   ((`('NOTFOUND ,expr))
-   `((method path arg-data) ,expr))
+   `((,@(make-handler-pattern 'NOTFOUND)) ,expr))
   ((`(,method ,path ,expr))
    `((,@(make-handler-pattern method path)) ,expr)))
 
 (defun compile-routes (forms)
   (lists:map #'compile-route/1 forms))
-
-;;(defun handle
-;;  (('GET '(#"hello" #"world") _req)
-;;   #(200 () #"Hello, world!"))
-;;  (('GET `(#"hello" ,name) _req)
-;;   `#(200 () (#"Hello, " ,name #".")))
-;;  ((_ _ _req)
-;;   #(404 () #"Not Found")))

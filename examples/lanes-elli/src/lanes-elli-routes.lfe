@@ -11,24 +11,24 @@
   ;; This macro generates the handle/3 function used by handle/2.
   ;;
   ;; top-level
-  ('GET "/"
+  ('GET #"/"
     (lanes.elli.response:ok "Welcome to the Volvo Store!"))
   ;; single order operations
-  ('POST "/order"
+  ('POST #"/order"
     (lanes-elli-data:create-order (lanes.elli:get-data req)))
-  ('GET "/order/:id"
+  ('GET #"/order/:id"
     (lanes-elli-data:get-order id))
-  ('PUT "/order/:id"
+  ('PUT #"/order/:id"
     (lanes-elli-data:update-order id (lanes.elli:get-data req)))
-  ('DELETE "/order/:id"
+  ('DELETE #"/order/:id"
     (lanes-elli-data:delete-order id))
   ;; order collection operations
-  ('GET "/orders"
+  ('GET #"/orders"
     (lanes-elli-data:get-orders))
   ;; payment operations
-  ('GET "/payment/order/:id"
+  ('GET #"/payment/order/:id"
     (lanes-elli-data:get-payment-status id))
-  ('PUT "/payment/order/:id"
+  ('PUT #"/payment/order/:id"
     (lanes-elli-data:make-payment id (lanes.elli:get-data req)))
   ;; error conditions
   ('ALLOWONLY
