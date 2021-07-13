@@ -25,39 +25,48 @@ For now, though, we are focused on the immediate and practical needs of LFE appl
 ## Usage
 
 Create your application/service routes with the ``(defroutes ...)`` form.
-Here is an example:
+Here is an example that is compatible with [Elli](https://github.com/elli-lib/elli):
 
 ```cl
-(include-lib "lanes/include/yaws.lfe")
+(include-lib "lanes/include/elli.lfe")
 
 (defroutes
+  ;; This macro generates the handle/3 function used by handle/2.
+  ;;
   ;; top-level
-  ('GET "/"
-    (lanes.yaws.response.html:ok "Welcome to the Volvo Store!"))
+  ('GET #"/"
+        (lanes.elli.response:ok "Welcome to the Volvo Store!"))
   ;; single order operations
-  ('POST "/order"
-    (create-order (lanes.yaws:get-data arg-data)))
-  ('GET "/order/:id"
-    (get-order id))
-  ('PUT "/order/:id"
-    (update-order id (lanes.yaws:client-data arg-data)))
-  ('DELETE "/order/:id"
-    (delete-order id))
+  ('POST #"/order"
+         (lanes-elli-data:create-order (lanes.elli:get-data req))
+         (lanes.elli:accepted))
+  ('GET #"/order/:id"
+        (lanes.elli:ok
+         (lanes-elli-data:get-order id)))
+  ('PUT #"/order/:id"
+        (lanes-elli-data:update-order id (lanes.elli:get-data req))
+        (lanes.elli:no-content))
+  ('DELETE #"/order/:id"
+           (lanes-elli-data:delete-order id))
   ;; order collection operations
-  ('GET "/orders"
-    (get-orders))
+  ('GET #"/orders"
+        (lanes.elli:ok
+         (lanes-elli-data:get-orders)))
   ;; payment operations
-  ('GET "/payment/order/:id"
-    (get-payment-status id))
-  ('PUT "/payment/order/:id"
-    (make-payment id (lanes.yaws:client-data arg-data)))
+  ('GET #"/payment/order/:id"
+        (lanes.elli:ok
+         (lanes-elli-data:get-payment-status id)))
+  ('PUT #"/payment/order/:id"
+        (lanes-elli-data:make-payment id (lanes.elli:get-data req))
+        (lanes.elli:not-content))
   ;; error conditions
-  ('ALLOWONLY
-    ('GET 'POST 'PUT 'DELETE)
-    (lanes.yaws.response.json:method-not-allowed))
+  ('ALLOWONLY ('GET 'POST 'PUT 'DELETE)
+              (lanes.elli.response:method-not-allowed))
   ('NOTFOUND
-    (lanes.yaws.response.json:not-found "Bad path: invalid operation.")))
+   (lanes.elli.response:not-found "Bad path: invalid operation.")))
 ```
+
+For full context, be sure to see the code in `./examples`.
 
 ### Consuming Routes
 
@@ -67,7 +76,10 @@ TBD
 
 #### Elli
 
-TBD
+The Elli `lanes` plugin supports a `defroutes` macro that generates a
+`hanlder/3` function typically used in Elli handler modules. One still
+needs to provide the `handle/2` and `handle_event/3` functions in the
+module where `defroutes` is called.
 
 #### Nova
 
@@ -75,9 +87,11 @@ TBD
 
 #### YAWS
 
-Note that this creates a `routes/3` function which can then be called
-in the `out/1` function that is required of a [YAWS appmod](http://yaws.hyber.org/appmods.yaws) module.
-For an example of this in action, see [this mini REST-api](https://github.com/lfex/yaws-rest-starter/blob/master/src/yrests-store-3.lfe).
+The YAWS `lanes` plugin creates a `routes/3` function which can then
+be called in the `out/1` function that is required of a
+[YAWS appmod](http://yaws.hyber.org/appmods.yaws) module.
+For an example of this in action, see
+[this mini REST-api](https://github.com/lfex/yaws-rest-starter/blob/master/src/yrests-store-3.lfe).
 
 A few important things to note here:) 
 
@@ -95,8 +109,7 @@ A few important things to note here:)
   path segments, with the `":varname"` segments converted to`varname`/
   variable segments), and then the `arg-data` variable from YAWS.
 
-
-## Concepts
+More details:
 
 lanes needs to provide YAWS with an `out/1` function. The location of this
 function is configured in your `etc/yaws.conf` file in the

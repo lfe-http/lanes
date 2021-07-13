@@ -37,14 +37,6 @@
   ('NOTFOUND
    (lanes.elli.response:not-found "Bad path: invalid operation.")))
 
-;;(defun handle
-;;  (('GET '(#"hello" #"world") _req)
-;;   #(200 () #"Hello, world!"))
-;;  (('GET `(#"hello" ,name) _req)
-;;   `#(200 () (#"Hello, " ,name #".")))
-;;  ((_ _ _req)
-;;   #(404 () #"Not Found")))
-
 (defun handle (req _args)
   (handle (elli_request:method req)
           (elli_request:path req)
