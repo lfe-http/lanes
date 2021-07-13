@@ -5,6 +5,7 @@
    (accepted 0) (accepted 1)
    (created 0) (created 1)
    (method-not-allowed 0) (method-not-allowed 1)
+   (no-content 0) (no-content 1)
    (not-found 0) (not-found 1)
    (ok 0) (ok 1)
    (response 1) (response 2) (response 3)))
@@ -48,6 +49,12 @@
 
 (defun method-not-allowed (body)
   (response 405 body))
+
+(defun no-content ()
+  (no-content #"No Content"))
+
+(defun no-content (body)
+  (response 204 body))
 
 (defun not-found ()
   (not-found #"Not Found"))
