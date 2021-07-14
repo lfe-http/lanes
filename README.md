@@ -28,7 +28,7 @@ Create your application/service routes with the ``(defroutes ...)`` form.
 Here is an example that is compatible with [Elli](https://github.com/elli-lib/elli):
 
 ```cl
-(include-lib "lanes/include/elli.lfe")
+(include-lib "lanes-elli/include/macros.lfe")
 
 (defroutes
   ;; This macro generates the handle/3 function used by handle/2.

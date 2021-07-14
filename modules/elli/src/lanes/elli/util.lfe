@@ -4,9 +4,6 @@
    (compile-routes 1)
    (make-handler-pattern 1) (make-handler-pattern 2)))
 
-(defun not-in (item collection)
-  `(not (orelse ,@(lists:map (lambda (x) `(== ,x ,item)) collection))))
-
 (defun make-handler-pattern
   (('NOTFOUND)
    (list '_ '_ 'req)))
@@ -22,7 +19,7 @@
   We need to re-form each route as a function head pattern and the
   expression (function to call or output to render) for that pattern."
   ((`('ALLOWONLY ,methods ,expr))
-   `((method _segments _req) (when ,(not-in 'method methods))
+   `((method _segments _req) (when ,(lanes.util:not-in 'method methods))
      ,expr))
   ((`('NOTFOUND ,expr))
    `((,@(make-handler-pattern 'NOTFOUND)) ,expr))

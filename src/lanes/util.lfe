@@ -10,6 +10,7 @@
   (export
    (encode-uri 1)
    (hex-octet 1)
+   (not-in 2)
    (percent-encode-byte 1)))
 
 ;;; Project Metadata
@@ -80,6 +81,9 @@
     (split-path path))))
 
 ;;; General utility functions
+
+(defun not-in (item collection)
+  `(not (orelse ,@(lists:map (lambda (x) `(== ,x ,item)) collection))))
 
 (defun encode-uri
   ((#"")

@@ -1,5 +1,5 @@
 %% -*- erlang -*-
-{application, lanes, [
+{application, 'lanes-elli', [
   {description, "A slightly more general HTTP routing library than LFE's lfest "},
 
   {vsn, "0.1.0"},
@@ -20,12 +20,11 @@
   {env, []},
 
   %% Package metadata:
-  {pkg_name, lanes},
+  {pkg_name, 'lanes-elli'},
   {maintainers, ["Duncan McGreggor"]},
   {licenses, ["Apache-2"]},
   {links, [
     {"GitHub", "https://github.com/lfex/loise"},
     {"Hex", "https://hex.pm/packages/loise"}
-  ]},
-  {exclude_files, ["priv/images/*"]}
+  ]}
 ]}.
