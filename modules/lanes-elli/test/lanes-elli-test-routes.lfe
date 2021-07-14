@@ -2,7 +2,7 @@
   (export
    (handle 3)))
 
-(include-lib "lanes/include/elli.lfe")
+(include-lib "lanes-elli/include/macros.lfe")
 
 (defun test-handler (msg _req)
   (lists:flatten (io_lib:format msg '())))
