@@ -30,11 +30,11 @@ $ rebar3 compile
 # Start the App [&#x219F;](#table-of-contents)
 
 ```shell
-$ rebar3 lfe
+$ rebar3 lfe repl
 ```
 
 ``` cl
-lfe> (application:ensure_all_started 'lfe-elli)
+lfe> (application:ensure_all_started 'lanes-elli-example)
 
 ```
 
@@ -52,12 +52,26 @@ At which point you should see logged output such as the following:
 Then, in another terminal window, you can do the usual:
 
 ``` shell
-$ curl http://localhost:5099/hello/world
-Hello, world!
-$ curl http://localhost:5099/hello/alice
-Hello, alice.
-$ curl http://localhost:5099/goodbye/bob
-Not Found
+$ curl http://localhost:5099/
+Welcome to the Volvo Store!
+$ curl -XPOST http://localhost:5099/order
+Accepted
+$ curl http://localhost:5099/order/42
+ORDER DATA FOR ID 42
+$ curl --silent -XPUT -I http://localhost:5099/order/42 | head -1
+HTTP/1.1 204 No Content
+$ curl --silent -XDELETE -I http://localhost:5099/order/42 | head -1
+HTTP/1.1 204 No Content
+$ curl http://localhost:5099/orders
+ALL ORDERS DATA
+$ curl --silent -XPUT -I http://localhost:5099/payment/order/42 | head -1
+HTTP/1.1 204 No Content
+$ curl http://localhost:5099/payment/order/42
+PAID
+$ curl -XPATCH http://localhost:5099/orders
+Method Not Allowed
+$ curl http://localhost:5099/no/such/path
+Bad path: invalid operation.oubiwann
 ```
 
 The terminal where you ran the LFE REPL should now have log messages for the associated events.

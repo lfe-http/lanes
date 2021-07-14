@@ -28,14 +28,14 @@ Create your application/service routes with the ``(defroutes ...)`` form.
 Here is an example that is compatible with [Elli](https://github.com/elli-lib/elli):
 
 ```cl
-(include-lib "lanes-elli/include/macros.lfe")
+(include-lib "lanes_elli/include/macros.lfe")
 
 (defroutes
   ;; This macro generates the handle/3 function used by handle/2.
   ;;
   ;; top-level
   ('GET #"/"
-        (lanes.elli.response:ok "Welcome to the Volvo Store!"))
+        (lanes.elli:ok "Welcome to the Volvo Store!"))
   ;; single order operations
   ('POST #"/order"
          (lanes-elli-data:create-order (lanes.elli:get-data req))
@@ -61,9 +61,9 @@ Here is an example that is compatible with [Elli](https://github.com/elli-lib/el
         (lanes.elli:not-content))
   ;; error conditions
   ('ALLOWONLY ('GET 'POST 'PUT 'DELETE)
-              (lanes.elli.response:method-not-allowed))
+              (lanes.elli:method-not-allowed))
   ('NOTFOUND
-   (lanes.elli.response:not-found "Bad path: invalid operation.")))
+   (lanes.elli:not-found "Bad path: invalid operation.")))
 ```
 
 For full context, be sure to see the code in `./examples`.

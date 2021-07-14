@@ -1,4 +1,4 @@
-(defmodule lfe-elli-sup
+(defmodule lanes-elli-sup
   (beehaviour supervisor)
   ;; supervisor implementation
   (export
@@ -21,7 +21,7 @@
       period 60))
 
 (defun elli-opts ()
-  '(#(callback hw-handlers)
+  '(#(callback lanes-elli-routes)
     #(port 5099)))
 
 (defun elli-spec ()

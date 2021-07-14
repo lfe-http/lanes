@@ -20,7 +20,7 @@
   {env, []},
 
   %% Package metadata:
-  {pkg_name, 'lanes-elli'},
+  {pkg_name, lanes_elli},
   {maintainers, ["Duncan McGreggor"]},
   {licenses, ["Apache-2"]},
   {links, [

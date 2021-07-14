@@ -79,7 +79,7 @@ jobs:
     needs: [plugin-build-elli]
     defaults:
       run:
-        working-directory: ./examples/lanes-elli
+        working-directory: ./examples/lanes-elli-example
 
     strategy:
       matrix:
@@ -95,9 +95,7 @@ jobs:
     - name: Check rebar3 Version
       run: rebar3 --version
     - name: Compile
-      run: rebar3 as elli-example compile
-    - name: Xref Checks
-      run: rebar3 as elli-example xref
+      run: rebar3 compile
     - name: Run Integration Tests
       # XXX https://github.com/lfe-rebar3/rebar3_lfe/issues/69 -- have ro compile multiple times; wtf?
       run: rebar3 as test,elli,elli-example lfe ltest -tintegration

@@ -1,8 +1,12 @@
 (defmodule lanes-elli-data
-  (behaviour elli_handler)
   (export
-   (handle 2)
-   (handle_event 3)))
+   (create-order 1)
+   (get-order 1)
+   (get-orders 0)
+   (update-order 2)
+   (delete-order 1)
+   (get-payment-status 1)
+   (make-payment 2)))
 
 (include-lib "logjam/include/logjam.hrl")
 
@@ -12,16 +16,16 @@
 
 (defun get-order (id)
   (log-debug "Querying DB fo order id ~p ..." (list id))
-  #"ORDER DATA")
+  (list #"ORDER DATA FOR ID " id))
 
 (defun get-orders ()
   (log-debug "Querying DB for all orders ...")
   #"ALL ORDERS DATA")
 
 (defun update-order (id post-data)
-    (log-debug "Updating order with id ~p ..." (list id))
-    (log-debug "Got POST data: ~p" (list post-data))
-    #"UPDATED")
+  (log-debug "Updating order with id ~p ..." (list id))
+  (log-debug "Got POST data: ~p" (list post-data))
+  #"UPDATED")
 
 (defun delete-order (id)
   (log-debug "Deleting order for id ~p ..." (list id))
@@ -29,10 +33,10 @@
 
 (defun get-payment-status (order-id)
   (log-debug "Checking for payment status of order with id ~p ..."
-             list order-id)
+             (list order-id))
   #"PAID")
 
 (defun make-payment (order-id payment-data)
-    (log-debug "Making payment for order with id ~p ..." (list order-id))
-    (log-debug "Got POST data: ~p" (list payment-data))
-    #"PAYMENT SUBMITTED")
+  (log-debug "Making payment for order with id ~p ..." (list order-id))
+  (log-debug "Got POST data: ~p" (list payment-data))
+  #"PAYMENT SUBMITTED")
