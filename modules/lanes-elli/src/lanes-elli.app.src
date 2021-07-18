@@ -24,7 +24,7 @@
   {maintainers, ["Duncan McGreggor"]},
   {licenses, ["Apache-2"]},
   {links, [
-    {"GitHub", "https://github.com/lfex/loise"},
-    {"Hex", "https://hex.pm/packages/loise"}
+    {"GitHub", "https://github.com/lfex/lanes/tree/release/main/modules/lanes-elli"},
+    {"Hex", "https://hex.pm/packages/lanes_elli"}
   ]}
 ]}.
