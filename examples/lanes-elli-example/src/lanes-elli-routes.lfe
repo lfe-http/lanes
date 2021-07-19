@@ -7,6 +7,7 @@
 
 (include-lib "logjam/include/logjam.hrl")
 (include-lib "lanes_elli/include/macros.lfe")
+(include-lib "elli/include/elli.hrl")
 
 (defroutes
   ;; This macro generates the handle/3 function used by handle/2.
@@ -48,10 +49,14 @@
   ('NOTFOUND
    (lanes.elli:not-found "Bad path: invalid operation.")))
 
-(defun handle (req _args)
-  (handle (elli_request:method req)
-          (elli_request:path req)
-          req))
+(defun handle
+  (((= (match-req callback cb) req) args)
+   (log-debug "Got request: ~p" (list req))
+   (log-debug "Got args: ~p" (list req))
+   (log-debug "Using callback: ~p" (list cb))
+   (handle (elli_request:method req)
+           (elli_request:path req)
+           req)))
 
 (defun handle_event (event data args)
   (log-info "Got event: ~p" `(,event))

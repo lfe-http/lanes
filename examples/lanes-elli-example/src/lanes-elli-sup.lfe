@@ -16,7 +16,7 @@
 (defun supervisor-opts () '())
 
 (defun sup-flags ()
-  `#M(strategy one_for_one
+  `#m(strategy one_for_one
       intensity 3
       period 60))
 
@@ -25,7 +25,7 @@
     #(port 5099)))
 
 (defun elli-spec ()
-  `#m(id lfe-elli
+  `#m(id lanes-elli-example
       start #(elli start_link (,(elli-opts)))
       restart permanent
       shutdown 5000
@@ -50,4 +50,3 @@
 
 (defun init (_args)
   `#(ok #(,(sup-flags) (,(elli-spec)))))
-
