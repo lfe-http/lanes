@@ -22,9 +22,9 @@
 (deftestcase root (_)
   (let ((`#(ok ,resp) (httpc:request "http://localhost:5099/")))
     (is-equal 200
-              (lanes.elli.response:status resp))
+              (lanes.httpc:status resp))
     (is-equal "Welcome to the Volvo Store!"
-              (lanes.elli.response:body resp))))
+              (lanes.httpc:body resp))))
 
 (deftestcase create-order (_)
   (let ((`#(ok ,resp) (httpc:request 'post
@@ -32,17 +32,17 @@
                                      '()
                                      '())))
     (is-equal 202
-              (lanes.elli.response:status resp))
+              (lanes.httpc:status resp))
     (is-equal "Accepted"
-              (lanes.elli.response:body resp))))
+              (lanes.httpc:body resp))))
 
 
 (deftestcase get-order (_)
   (let ((`#(ok ,resp) (httpc:request "http://localhost:5099/order/42")))
     (is-equal 200
-              (lanes.elli.response:status resp))
+              (lanes.httpc:status resp))
     (is-equal "ORDER DATA FOR ID 42"
-              (lanes.elli.response:body resp))))
+              (lanes.httpc:body resp))))
 
 (deftestcase update-order (_)
   (let ((`#(ok ,resp) (httpc:request 'put
@@ -50,14 +50,14 @@
                                      '()
                                      '())))
     (is-equal 204
-              (lanes.elli.response:status resp))))
+              (lanes.httpc:status resp))))
 
 (deftestcase get-orders (_)
   (let ((`#(ok ,resp) (httpc:request "http://localhost:5099/orders")))
     (is-equal 200
-              (lanes.elli.response:status resp))
+              (lanes.httpc:status resp))
     (is-equal "ALL ORDERS DATA"
-              (lanes.elli.response:body resp))))
+              (lanes.httpc:body resp))))
 
 (deftestcase update-payment (_)
   (let ((`#(ok ,resp) (httpc:request 'put
@@ -65,25 +65,25 @@
                                      '()
                                      '())))
     (is-equal 204
-              (lanes.elli.response:status resp))))
+              (lanes.httpc:status resp))))
 
 (deftestcase get-payment-status (_)
   (let ((`#(ok ,resp) (httpc:request "http://localhost:5099/payment/order/42")))
     (is-equal 200
-              (lanes.elli.response:status resp))
+              (lanes.httpc:status resp))
     (is-equal "PAID"
-              (lanes.elli.response:body resp))))
+              (lanes.httpc:body resp))))
 
 (deftestcase not-allowed (_)
   (let ((`#(ok ,resp) (httpc:request 'head
                                      #("http://localhost:5099/" ()) '() '())))
     (is-equal 405
-              (lanes.elli.response:status resp))))
+              (lanes.httpc:status resp))))
 
 (deftestcase not-found (_)
   (let ((`#(ok ,resp) (httpc:request "http://localhost:5099/no/such/path")))
     (is-equal 404
-              (lanes.elli.response:status resp))))
+              (lanes.httpc:status resp))))
 
 (deftestgen suite
   (tuple 'foreach

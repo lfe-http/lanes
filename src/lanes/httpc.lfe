@@ -1,4 +1,4 @@
-(defmodule lanes.elli.response
+(defmodule lanes.httpc
   (export
    (body 1)
    (headers 1)
