@@ -12,53 +12,56 @@
 
 ## Introduction
 
-The lanes project aims to offer some of the YAWS-specific features of the [lfest project](https://github.com/lfex/lfest) to a wider selection of BEAM-based web servers. This is done with the understanding that the original design of lfest (and thus the design inherited in the lanes project) is not optimal. For more on the potential end-state for routes and request/response handling in LFE web applications, see the [lrootes project](https://github.com/lfe-mug/lrootes).
+The lanes project aims to offer some of the YAWS-specific features of the [lfest project](https://github.com/lfex/lfest) to a wider selection of BEAM-based web servers. This is done with the understanding that the original design of lfest (and thus the design inherited in the lanes project) is not optimal.
 
 For now, though, we are focused on the immediate and practical needs of LFE application developers.
 
 ## Dependencies
 
-* Erlang 19+
+* Erlang 21+
 * `rebar3`
 
 
 ## Usage
 
-Create your application/service routes with the ``(defroutes ...)`` form.
+Create your application/service routes with the `(defroutes ...)` form.
 Here is an example that is compatible with [Elli](https://github.com/elli-lib/elli):
 
 ```cl
 (include-lib "lanes_elli/include/macros.lfe")
 
 (defroutes
-  ;; This macro generates the handle/3 function used by handle/2.
-  ;;
   ;; top-level
   ('GET #"/"
         (lanes.elli:ok "Welcome to the Volvo Store!"))
   ;; single order operations
   ('POST #"/order"
-         (lanes-elli-data:create-order (lanes.elli:get-data req))
-         (lanes.elli:accepted))
+         (progn
+           (lanes-elli-data:create-order (lanes.elli:get-data req))
+           (lanes.elli:accepted)))
   ('GET #"/order/:id"
         (lanes.elli:ok
          (lanes-elli-data:get-order id)))
   ('PUT #"/order/:id"
-        (lanes-elli-data:update-order id (lanes.elli:get-data req))
-        (lanes.elli:no-content))
+        (progn
+          (lanes-elli-data:update-order id (lanes.elli:get-data req))
+          (lanes.elli:no-content)))
   ('DELETE #"/order/:id"
-           (lanes-elli-data:delete-order id))
+           (progn
+             (lanes-elli-data:delete-order id)
+             (lanes.elli:no-content)))
   ;; order collection operations
   ('GET #"/orders"
         (lanes.elli:ok
          (lanes-elli-data:get-orders)))
   ;; payment operations
+  ('PUT #"/payment/order/:id"
+        (progn
+          (lanes-elli-data:make-payment id (lanes.elli:get-data req))
+          (lanes.elli:no-content)))
   ('GET #"/payment/order/:id"
         (lanes.elli:ok
          (lanes-elli-data:get-payment-status id)))
-  ('PUT #"/payment/order/:id"
-        (lanes-elli-data:make-payment id (lanes.elli:get-data req))
-        (lanes.elli:not-content))
   ;; error conditions
   ('ALLOWONLY ('GET 'POST 'PUT 'DELETE)
               (lanes.elli:method-not-allowed))
