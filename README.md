@@ -100,6 +100,9 @@ TBD
 
 #### YAWS
 
+WARNING: YAWS support is old and needs to be re-visited to make sure everything
+still works ...
+
 The YAWS `lanes` plugin creates a `routes/3` function which can then
 be called in the `out/1` function that is required of a
 [YAWS appmod](http://yaws.hyber.org/appmods.yaws) module.
