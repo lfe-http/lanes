@@ -41,10 +41,10 @@ lfe> (application:ensure_all_started 'lanes-elli-example)
 At which point you should see logged output such as the following:
 
 ```
-2021-07-11 11:57:59 INFO <0.425.0> [:] ▸ text="Starting elli application ..."
-2021-07-11 11:57:59 NOTICE <0.429.0> [hw-handlers:handle_event/3:22] ▸ text="Got event: elli_startup"
-2021-07-11 11:57:59 INFO <0.429.0> [hw-handlers:handle_event/3:22] ▸ text="Got data: []"
-2021-07-11 11:57:59 DEBUG <0.429.0> [hw-handlers:handle_event/3:22] ▸ text="Got args: undefined"
+2021-07-18 16:47:32 NOTICE <0.543.0> [lanes-elli-app:start/2:14] ▸ text="Starting LFE elli example application ..."
+2021-07-18 16:47:32 INFO <0.547.0> [lanes-elli-routes:handle_event/3:58] ▸ text="Got event: elli_startup"
+2021-07-18 16:47:32 DEBUG <0.547.0> [lanes-elli-routes:handle_event/3:58] ▸ text="Got data: []"
+2021-07-18 16:47:32 DEBUG <0.547.0> [lanes-elli-routes:handle_event/3:58] ▸ text="Got args: undefined"
 ```
 
 # HTTP Resources [&#x219F;](#table-of-contents)
