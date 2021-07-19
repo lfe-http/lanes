@@ -34,7 +34,7 @@ $ rebar3 lfe repl
 ```
 
 ``` cl
-lfe> (application:ensure_all_started 'lanes-elli-example)
+lfe> (lanes-elli-example:start)
 
 ```
 
@@ -78,9 +78,15 @@ The terminal where you ran the LFE REPL should now have log messages for the ass
 
 # Tests [&#x219F;](#table-of-contents)
 
+You can run all the tests (unit and integration) with the following:
+
 ```shell
-$ rebar3 as test lfe test
+$ rebar3 as test do compile,lfe ltest -tall
 ```
+
+The integration test starts up an Elli HTTP server using the routes defined in the example
+and then uses the built-in Erlang HTTP client to access each rout + path, verifying HTTP
+status codes and response body content.
 
 ## License [&#x219F;](#table-of-contents)
 
