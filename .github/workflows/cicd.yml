@@ -6,6 +6,7 @@ on:
     tags: ['**']
   pull_request:
     branches: [ main, 'release/**', 'task/**', 'feature/**', 'epic/**']
+  # Build once a month, just to be sure things are still working
   schedule:
   - cron: "20 4 19 * *"
 
@@ -68,9 +69,10 @@ jobs:
       run: rebar3 compile
     - name: Xref Checks
       run: rebar3 xref
+    - name: Compile Test Profile
+      run: rebar3 as test compile
     - name: Run Unit Tests
-      # XXX https://github.com/lfe-rebar3/rebar3_lfe/issues/69 -- have ro compile multiple times; wtf?
-      run: rebar3 as test do compile,compile,lfe ltest -tunit
+      run: rebar3 as test lfe ltest -tunit
     - name: Run Integration Tests
       run: rebar3 as test lfe ltest -tintegration
     - name: Test Coverage
@@ -99,6 +101,8 @@ jobs:
     - name: Check rebar3 Version
       run: rebar3 --version
     - name: Compile
+      run: rebar3 compile
+    - name: Compile Test Profile
       run: rebar3 as test compile
     - name: Run Unit Tests
       run: rebar3 as test lfe ltest -tunit
