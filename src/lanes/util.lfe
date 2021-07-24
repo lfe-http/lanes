@@ -93,38 +93,5 @@
   ((uri)
    (iolist_to_binary (encode-uri uri ""))))
 
-;; This was derived from the Erlang example here:
-;; * https://stackoverflow.com/a/3743323
-(defun encode-uri
-  ((#"" acc)
-   acc)
-  (((binary (char (size 8)) (rest bytes)) acc)
-   (when (andalso (>= char #\a) (=< char #\z)))
-   (encode-uri rest (list acc char)))
-  (((binary (char (size 8)) (rest bytes)) acc)
-   (when (andalso (>= char #\A) (=< char #\Z)))
-   (encode-uri rest (list acc char)))
-  (((binary (char (size 8)) (rest bytes)) acc) (when (== char #\.))
-   (encode-uri rest (list acc char)))
-  (((binary (char (size 8)) (rest bytes)) acc) (when (== char #\-))
-   (encode-uri rest (list acc char)))
-  (((binary (char (size 8)) (rest bytes)) acc) (when (== char #\_))
-   (encode-uri rest (list acc char)))
-  (((binary (char (size 8)) (rest bytes)) acc)
-   (encode-uri rest (list acc (percent-encode-byte char)))))
-
-;; This was derived from the Erlang example here:
-;; * https://stackoverflow.com/a/3743323
-(defun percent-encode-byte (char)
-  (++ "%" (hex-octet char)))
-
-;; This was derived from the Erlang example here:
-;; * https://stackoverflow.com/a/3743323
-(defun hex-octet
-  ((n) (when (=< n 9))
-   (list (+ #\0 n)))
-  ((n) (when (> n 15))
-   (++ (hex-octet (bsr n 4))
-       (hex-octet (band n 15))))
-  ((n)
-   (list (+ (- n 10) #\a))))
+(defun encode-uri (path-segment)
+  (cow_uri:urlencode path-segment))
