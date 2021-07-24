@@ -1,6 +1,6 @@
 %% -*- erlang -*-
 {application, 'lanes-elli', [
-  {description, "A slightly more general HTTP routing library than LFE's lfest "},
+  {description, "A slightly more general HTTP routing library than LFE's lfest"},
 
   {vsn, "0.1.2"},
 
