@@ -3,7 +3,6 @@
   (export all))
 
 (include-lib "ltest/include/ltest-macros.lfe")
-(include-lib "lanes-elli/include/macros.lfe")
 
 (deftest make-handler-pattern
   (is-equal '(GET (list #"a" #"b" #"c") req)
