@@ -1,0 +1,30 @@
+%% -*- erlang -*-
+{application, 'lanes-barista', [
+  {description, "A slightly more general HTTP routing library than LFE's lfest "},
+
+  {vsn, "0.1.0"},
+
+  {modules, [
+    lanes
+  ]},
+
+  {registered, []},
+
+  {applications, [
+    kernel,
+    stdlib
+  ]},
+
+  {included_applications, []},
+
+  {env, []},
+
+  %% Package metadata:
+  {pkg_name, lanes_barista},
+  {maintainers, ["Duncan McGreggor"]},
+  {licenses, ["Apache-2"]},
+  {links, [
+    {"GitHub", "https://github.com/lfex/lanes/tree/release/main/modules/lanes-barista"},
+    {"Hex", "https://hex.pm/packages/lanes_barista"}
+  ]}
+]}.
