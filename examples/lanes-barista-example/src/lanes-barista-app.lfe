@@ -15,3 +15,6 @@
 
 (defun stop (pid)
   (barista:stop pid))
+
+(defun stop ()
+  (inets:stop 'httpd))

@@ -1,5 +1,4 @@
 (defmodule lanes-barista-example
-  (behaviour application)
   (export all))
 
 (include-lib "logjam/include/logjam.hrl")
