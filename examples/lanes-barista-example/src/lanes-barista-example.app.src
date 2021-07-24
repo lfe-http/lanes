@@ -1,0 +1,16 @@
+{application, 'lanes-barista-example', [
+    {description, "An example application for lanes running on barista"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {'lanes-barista-app', []}},
+    {applications, [
+        kernel,
+        stdlib,
+        inets
+    ]},
+    {env,[]},
+    {modules, []},
+
+    {licenses, ["Apache 2.0"]},
+    {links, []}
+ ]}.
