@@ -9,9 +9,7 @@
    (split-path 1))
   (export
    (encode-uri 1)
-   (hex-octet 1)
-   (not-in 2)
-   (percent-encode-byte 1)))
+   (not-in 2)))
 
 ;;; Project Metadata
 
@@ -86,12 +84,7 @@
   `(not (orelse ,@(lists:map (lambda (x) `(== ,x ,item)) collection))))
 
 (defun encode-uri
-  ((#"")
-   #"")
-  ((uri) (when (is_list uri))
-   (encode-uri (unicode:characters_to_binary uri)))
-  ((uri)
-   (iolist_to_binary (encode-uri uri ""))))
-
-(defun encode-uri (path-segment)
-  (cow_uri:urlencode path-segment))
+  ((path-segment) (when (is_binary path-segment))
+   (encode-uri (unicode:characters_to_list path-segment)))
+  ((path-segment) (when (is_list path-segment))
+   (unicode:characters_to_binary (encode_uri_rfc3986:encode path-segment))))

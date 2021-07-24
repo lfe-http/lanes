@@ -43,24 +43,22 @@
             (lanes.util:path->segments #"a/b/c"))
   (is-equal '(#"%20a" #"b" #"c%20")
             (lanes.util:path->segments #" a/b/c "))
+  (is-equal '(#"a" #"b" #"42")
+            (lanes.util:path->segments "/a/b/42"))
+  (is-equal '(#"a" #"b" #"42")
+            (lanes.util:path->segments #"/a/b/42"))
+  (is-equal '(#"a" #"b" #"42")
+            (lanes.util:path->segments #"a/b/42"))
+  (is-equal '(#"%20a" #"b" #"42%20")
+            (lanes.util:path->segments #" a/b/42 "))
   (is-equal '(#"user" #"update" id)
             (lanes.util:path->segments #"/user/update/:id")))
-
-(deftest hex-octet
-  (is-equal "61"
-            (lanes.util:hex-octet #\a))
-  (is-equal "20"
-            (lanes.util:hex-octet #\ )))
-
-(deftest percent-encode-byte
-  (is-equal "%61"
-            (lanes.util:percent-encode-byte #\a))
-  (is-equal "%20"
-            (lanes.util:percent-encode-byte #\ )))
 
 (deftest encode-uri
   (is-equal #"a"
             (lanes.util:encode-uri "a"))
+  (is-equal #"42"
+            (lanes.util:encode-uri "42"))
   (is-equal #"%20"
             (lanes.util:encode-uri " "))
   (is-equal #"alice%3aroberts%40host"
