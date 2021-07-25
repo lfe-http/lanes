@@ -57,6 +57,3 @@
    (progn
      (log-debug "barista request: ~p" (list req))
      (barista-response:not-found "Bad path: invalid operation."))))
-
-
-;(defroutes ('GET #"/" (barista-response:ok "Welcome to the Volvo Store!")))
