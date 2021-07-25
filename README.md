@@ -73,14 +73,22 @@ For full context, be sure to see the code in `./examples`.
 
 ### Consuming Routes
 
+#### Barista
+
+[Barista](https://github.com/lfex/barista) is a thin wrapper around the
+Erlang standard library's httpd, written in LFE. The `lanes-barista`
+module supports a `defroutes` macro that generates a `handle/3` function
+and allows barista web applications to dispatch based upon request method and
+path.
+
 #### Cowboy
 
 TBD
 
 #### Elli
 
-The Elli `lanes` plugin supports a `defroutes` macro that generates a
-`hanlder/3` function typically used in Elli handler modules. One still
+The `lanes-elli` module supports a `defroutes` macro that generates a
+`hanlde/3` function typically used in Elli handler modules. One still
 needs to provide the `handle/2` and `handle_event/3` functions in the
 module where `defroutes` is called.
 
