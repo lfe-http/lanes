@@ -27,7 +27,7 @@ This is an LFE port of the Erlang [elli Hello World](https://github.com/elli-lib
 $ rebar3 compile
 ```
 
-# Start the App [&#x219F;](#table-of-contents)
+## Start the App [&#x219F;](#table-of-contents)
 
 ```shell
 $ rebar3 lfe repl
@@ -35,7 +35,6 @@ $ rebar3 lfe repl
 
 ``` cl
 lfe> (lanes-elli-example:start)
-
 ```
 
 At which point you should see logged output such as the following:
@@ -99,8 +98,8 @@ Copyright © 2021, Duncan McGreggor <oubiwann@gmail.com>.
 [logo]: https://avatars1.githubusercontent.com/u/3434967?s=250
 [logo-large]: https://avatars1.githubusercontent.com/u/3434967
 [github]: https://github.com/lfe/examples/tree/master/elli
-[gh-actions-badge]: https://github.com/lfe/examples/workflows/cicd/badge.svg
-[gh-actions]: https://github.com/lfe/examples/actions
+[gh-actions-badge]: https://github.com/lfex/lanes/workflows/ci%2Fcd/badge.svg
+[gh-actions]: https://github.com/lfex/lanes/actions
 [lfe]: https://github.com/lfe/lfe
 [lfe badge]: https://img.shields.io/badge/lfe-2.0-blue.svg
 [erlang badge]: https://img.shields.io/badge/erlang-21%20to%2024-blue.svg
