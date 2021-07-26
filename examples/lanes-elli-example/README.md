@@ -94,7 +94,7 @@ Apache License, Version 2.0
 
 Copyright © 2021, Duncan McGreggor <oubiwann@gmail.com>.
 
-<!-- Named page links below: /-->
+[//]: ---Named-Links---
 
 [logo]: https://avatars1.githubusercontent.com/u/3434967?s=250
 [logo-large]: https://avatars1.githubusercontent.com/u/3434967

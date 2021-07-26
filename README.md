@@ -149,7 +149,7 @@ Apache Version 2 License
 Copyright © 2014-2021, Duncan McGreggor <oubiwann@gmail.com>
 
 
-<!-- Named page links below: /-->
+[//]: ---Named-Links---
 
 [logo]: priv/images/logo.jpg
 [logo-large]: priv/images/logo-large.jpg
