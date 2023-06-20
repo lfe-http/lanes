@@ -1,6 +1,6 @@
 (defmodule lanes
   (export all))
 
-(defun version () (lanes.util:version))
+(defun version () (lanes.version:get))
 
-(defun versions () (lanes.util:versions))
+(defun versions () (lanes.version:all))
