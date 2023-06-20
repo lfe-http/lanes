@@ -1,6 +1,6 @@
 {application, 'lanes-httpd-example', [
     {description, "An example application for lanes running on inets httpd"},
-    {vsn, "0.2.0"},
+    {vsn, "0.3.0-dev"},
     {registered, []},
     {mod, {'lanes-httpd-app', []}},
     {applications, [
