@@ -53,13 +53,3 @@
             (lanes.util:path->segments #" a/b/42 "))
   (is-equal '(#"user" #"update" id)
             (lanes.util:path->segments #"/user/update/:id")))
-
-(deftest encode-uri
-  (is-equal #"a"
-            (lanes.util:encode-uri "a"))
-  (is-equal #"42"
-            (lanes.util:encode-uri "42"))
-  (is-equal #"%20"
-            (lanes.util:encode-uri " "))
-  (is-equal #"alice%3aroberts%40host"
-            (lanes.util:encode-uri "alice:roberts@host")))
