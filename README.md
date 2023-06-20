@@ -9,7 +9,6 @@
 
 *A slightly more general HTTP routing library than LFE's lfest*
 
-
 ## Introduction
 
 The lanes project aims to offer some of the YAWS-specific features of the [lfest project](https://github.com/lfex/lfest) to a wider selection of BEAM-based web servers. This is done with the understanding that the original design of lfest (and thus the design inherited in the lanes project) is not optimal.
@@ -21,6 +20,11 @@ For now, though, we are focused on the immediate and practical needs of LFE appl
 * Erlang 21+
 * `rebar3`
 
+## Compatibility
+
+Releases of Elli map to the following versions in its dependencies:
+
+* `0.2.0` - LFE 2.0.1, Erlang 21-24, Rebar 3.16, rebar3_lfe 0.3.1 (with examples using logjam 1.0.0, Elli 3.3.0, Barista 0.3.2)
 
 ## Usage
 
@@ -109,7 +113,7 @@ be called in the `out/1` function that is required of a
 For an example of this in action, see
 [this mini REST-api](https://github.com/lfex/yaws-rest-starter/blob/master/src/yrests-store-3.lfe).
 
-A few important things to note here:) 
+A few important things to note here:)
 
 * Each route is composed of an HTTP verb, a path, and a function to execute
   should both the verb and path match.
@@ -148,14 +152,10 @@ Apache Version 2 License
 
 Copyright © 2014-2021, Duncan McGreggor <oubiwann@gmail.com>
 
-
 [//]: ---Named-Links---
 
 [logo]: priv/images/logo.jpg
 [logo-large]: priv/images/logo-large.jpg
-[org]: https://github.com/lfex
-[github]: https://github.com/lfex/lanes
-[gitlab]: https://gitlab.com/lfex/lanes
 [gh-actions-badge]: https://github.com/lfex/lanes/workflows/ci%2Fcd/badge.svg
 [gh-actions]: https://github.com/lfex/lanes/actions
 [lfe]: https://github.com/rvirding/lfe
@@ -164,4 +164,3 @@ Copyright © 2014-2021, Duncan McGreggor <oubiwann@gmail.com>
 [versions]: https://github.com/lfex/lanes/blob/master/.github/workflows/cicd.yml
 [github tags]: https://github.com/lfex/lanes/tags
 [github tags badge]: https://img.shields.io/github/tag/lfex/lanes.svg
-[github downloads]: https://img.shields.io/github/downloads/lfex/lanes/total.svg

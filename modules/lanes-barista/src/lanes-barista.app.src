@@ -1,8 +1,8 @@
 %% -*- erlang -*-
 {application, 'lanes-barista', [
-  {description, "A slightly more general HTTP routing library than LFE's lfest "},
+  {description, "Barista support for LFE lanes"},
 
-  {vsn, "0.1.0"},
+  {vsn, "0.2.0"},
 
   {modules, [
     lanes
