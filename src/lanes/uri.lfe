@@ -8,8 +8,26 @@
 ;;  * `src/encode_uri_rfc3986.erl`
 
 (defun encode (chars)
-  chars `#m())
+  chars `#m(as-string true))
 
 (defun encode (chars opts)
   chars)
 
+;;; Private functions
+
+(defun encode-binary (data)
+  (unicode:characters_to_binary
+    (encode-string
+      (unicode:characters_to_list data))))
+
+(defun encode-string (data)
+  data)
+
+(defun hex-octet (char)
+  char)
+
+(defun normalise-hex (hex)
+  hex)
+
+(defun escape-byte (char)
+  (normalise-hex (hex-octet char)))
