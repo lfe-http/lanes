@@ -1,6 +1,6 @@
 {application, 'lanes-elli-example', [
     {description, "An example application for lanes running on Elli"},
-    {vsn, "0.1.0"},
+    {vsn, "0.2.0"},
     {registered, []},
     {mod, {'lanes-elli-app', []}},
     {applications, [
