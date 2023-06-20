@@ -17,14 +17,15 @@ For now, though, we are focused on the immediate and practical needs of LFE appl
 
 ## Dependencies
 
-* Erlang 21+
+* Erlang 20+
 * `rebar3`
 
 ## Compatibility
 
 Releases of Elli map to the following versions in its dependencies:
 
-* `0.2.0` - LFE 2.0.1, Erlang 21-24, Rebar 3.16, rebar3_lfe 0.3.1 (with examples using logjam 1.0.0, Elli 3.3.0, Barista 0.3.2)
+* `0.3.0` - LFE 2.1.1, Erlang 20-26, Rebar 3.22, rebar2_lfe 0.4.2 (with examples using logjam 1.0.5, Elli 3.3.0, Barista 0.3.2)
+* `0.2.0` - LFE 2.0.1, Erlang 20-25, Rebar 3.16, rebar3_lfe 0.3.1 (with examples using logjam 1.0.0, Elli 3.3.0, Barista 0.3.2)
 
 ## Usage
 
@@ -160,7 +161,7 @@ Copyright © 2014-2021, Duncan McGreggor <oubiwann@gmail.com>
 [gh-actions]: https://github.com/lfex/lanes/actions
 [lfe]: https://github.com/rvirding/lfe
 [lfe badge]: https://img.shields.io/badge/lfe-2.0-blue.svg
-[erlang badge]: https://img.shields.io/badge/erlang-21%20to%2024-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-201%20to%2025-blue.svg
 [versions]: https://github.com/lfex/lanes/blob/master/.github/workflows/cicd.yml
 [github tags]: https://github.com/lfex/lanes/tags
 [github tags badge]: https://img.shields.io/github/tag/lfex/lanes.svg
