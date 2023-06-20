@@ -21,11 +21,10 @@
 
   %% Package metadata:
   {pkg_name, lanes},
-  {maintainers, ["Duncan McGreggor"]},
   {licenses, ["Apache-2"]},
   {links, [
     {"GitHub", "https://github.com/lfex/lanes"},
     {"Hex", "https://hex.pm/packages/lanes"}
   ]},
-  {exclude_files, ["priv/images/*"]}
+  {exclude_files, ["priv/images/*", "priv/scripts/*"]}
 ]}.

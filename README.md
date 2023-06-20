@@ -7,7 +7,7 @@
 
 [![][logo]][logo-large]
 
-*A slightly more general HTTP routing library than LFE's lfest*
+*A slightly more general LFE HTTP routing library than lfest*
 
 ## Introduction
 
