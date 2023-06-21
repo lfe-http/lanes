@@ -2,7 +2,7 @@
 {application, 'lanes-elli', [
   {description, "Elli support for LFE lanes"},
 
-  {vsn, "0.3.0-dev"},
+  {vsn, "0.3.0-rc1"},
 
   {modules, [
     lanes
