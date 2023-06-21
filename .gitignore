@@ -18,3 +18,5 @@ erl_crash.dump
 modules/lanes-elli/rebar.lock
 examples/lanes-elli-example/rebar.lock
 rebar.lock
+docs/book
+doc

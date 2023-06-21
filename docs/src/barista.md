@@ -7,4 +7,4 @@ and allows barista web applications to dispatch based upon request method and pa
 
 ## Example
 
-See the [lanes Barista example](../../examples/lanes-barista-example).
+See the [lanes Barista example](https://github.com/lfex/lanes/tree/main/examples/lanes-barista-example).
