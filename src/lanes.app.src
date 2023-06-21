@@ -2,7 +2,7 @@
 {application, lanes, [
   {description, "A slightly more general LFE HTTP routing library than lfest"},
 
-  {vsn, "0.3.0-rc1"},
+  {vsn, "0.3.0-rc2"},
 
   {modules, [
     lanes
