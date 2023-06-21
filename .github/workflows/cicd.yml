@@ -35,12 +35,8 @@ jobs:
       run: rebar3 xref
     - name: Dialyzer
       run: rebar3 dialyzer
-    - name: Compile Test Profile
-      run: rebar3 as test compile
     - name: Run Unit Tests
-      run: rebar3 as test lfe ltest -tunit
-    - name: Run Integration Tests
-      run: rebar3 as test lfe ltest -tintegration
+      run: rebar3 as test eunit
     - name: Test Coverage
       run: rebar3 as test do proper -c, cover -v --min_coverage=0
 
@@ -69,12 +65,8 @@ jobs:
       run: rebar3 compile
     - name: Xref Checks
       run: rebar3 xref
-    - name: Compile Test Profile
-      run: rebar3 as test compile
     - name: Run Unit Tests
-      run: rebar3 as test lfe ltest -tunit
-    - name: Run Integration Tests
-      run: rebar3 as test lfe ltest -tintegration
+      run: rebar3 as test eunit
     - name: Test Coverage
       run: rebar3 as test do proper -c, cover -v --min_coverage=0
 
@@ -101,12 +93,8 @@ jobs:
       run: rebar3 --version
     - name: Compile
       run: rebar3 compile
-    - name: Compile Test Profile
-      run: rebar3 as test compile
     - name: Run Unit Tests
-      run: rebar3 as test lfe ltest -tunit
-    - name: Run Integration Tests
-      run: rebar3 as test lfe ltest -tintegration
+      run: rebar3 as test eunit
 
   old-builds:
         name: Old Erlang ${{ matrix.otp_version }} build
@@ -130,11 +118,7 @@ jobs:
           run: rebar3 xref
         - name: Dialyzer
           run: rebar3 dialyzer
-        - name: Compile Test Profile
-          run: rebar3 as test compile
         - name: Run Unit Tests
-          run: rebar3 as test lfe ltest -tunit
-        - name: Run Integration Tests
-          run: rebar3 as test lfe ltest -tintegration
+          run: rebar3 as test eunit
         - name: Test Coverage
           run: rebar3 as test do proper -c, cover -v --min_coverage=0
