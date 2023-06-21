@@ -1,6 +1,6 @@
 {application, 'lanes-barista-example', [
     {description, "An example application for lanes running on barista"},
-    {vsn, "0.3.0-rc1"},
+    {vsn, "0.3.0-rc2"},
     {registered, []},
     {mod, {'lanes-barista-app', []}},
     {applications, [
