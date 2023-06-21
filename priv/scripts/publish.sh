@@ -13,7 +13,7 @@ rebar3 do clean,compile,hex publish
 for MOD in ./modules/lanes-{elli,barista}; do
     echo ">> Publishing $MOD to hex.pm ..."
     cd $MOD
-    rm -f rebar.lock
+    rm -f rebar.lock doc
     rebar3 do clean,compile,hex publish
     cd -
 done

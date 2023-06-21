@@ -1,6 +1,6 @@
 # Elli
 
-Wriing Elli applications in LFE with lanes is very similar as in Erlang:
+Writing Elli applications in LFE with lanes is very similar as in Erlang:
 the only difference is that you don't create a `handle/3` function. Instead,
 you use `defroutes` which creates `handle/3` under the covers for you.
 Everything else is vanilla Elli. To be clear, one still needs to provide the
