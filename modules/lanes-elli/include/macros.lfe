@@ -3,7 +3,7 @@
   into a series of function heads which comprise the final output, the elli
   handler function 'handle/3'."
   `(defun handle
-     ,@(lanes.elli.util:compile-routes body)))
+     ,@(lanes.common:compile-routes body)))
 
 (defun --loaded-elli-route-macros-- ()
   "This is just a dummy function for display purposes when including from the

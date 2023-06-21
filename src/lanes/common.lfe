@@ -1,4 +1,9 @@
-(defmodule lanes.elli.util
+;;;; This module is used by the lanes-elli and lanes-barista modules (plugins).
+;;;; It was moved out of the lanes-elli module so that lanes-barista's
+;;;; dependency upon it could be removed.
+;;;;
+;;;; Obviously anything else that wants to use this, may as well ;-)
+(defmodule lanes.common
   (export
    (compile-route 1)
    (compile-routes 1)
