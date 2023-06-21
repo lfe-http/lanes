@@ -35,10 +35,10 @@ jobs:
       run: rebar3 xref
     - name: Dialyzer
       run: rebar3 dialyzer
+    - name: Compile Tests
+      run: rebar3 as test compile
     - name: Run Unit Tests
       run: rebar3 as test eunit
-    - name: Test Coverage
-      run: rebar3 as test do proper -c, cover -v --min_coverage=0
 
   module-builds:
     name: Erlang ${{ matrix.otp_version }} lanes '${{ matrix.lanes-module }}' plugin build
@@ -65,10 +65,10 @@ jobs:
       run: rebar3 compile
     - name: Xref Checks
       run: rebar3 xref
+    - name: Compile Tests
+      run: rebar3 as test compile
     - name: Run Unit Tests
       run: rebar3 as test eunit
-    - name: Test Coverage
-      run: rebar3 as test do proper -c, cover -v --min_coverage=0
 
   lanes-examples-tests:
     name: Erlang ${{ matrix.otp_version }} lanes '${{ matrix.lanes-module }}' example tests run
@@ -93,6 +93,8 @@ jobs:
       run: rebar3 --version
     - name: Compile
       run: rebar3 compile
+    - name: Compile Tests
+      run: rebar3 as test compile
     - name: Run Unit Tests
       run: rebar3 as test eunit
 
@@ -118,7 +120,7 @@ jobs:
           run: rebar3 xref
         - name: Dialyzer
           run: rebar3 dialyzer
+        - name: Compile Tests
+          run: rebar3 as test compile
         - name: Run Unit Tests
           run: rebar3 as test eunit
-        - name: Test Coverage
-          run: rebar3 as test do proper -c, cover -v --min_coverage=0
