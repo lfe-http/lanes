@@ -7,6 +7,12 @@ DOCS_BUILD_DIR = $(ROOT_DIR)/doc
 LOCAL_DOCS_HOST = localhost
 LOCAL_DOCS_PORT = 5099
 
+FINISH=-run init stop -noshell
+GET_VERSION = '{ok,[App]}=file:consult("src/$(PROJECT).app.src"), \
+	V=proplists:get_value(vsn,element(3,App)), \
+	io:format("~p~n",[V])' \
+	$(FINISH)
+
 compile:
 	rebar3 compile
 
@@ -37,6 +43,13 @@ docs: docs-clean
 docs-open: docs-clean
 	@echo "\nBuilding docs ...\n"
 	@cd $(DOCS_DIR) && mdbook build -d $(DOCS_BUILD_DIR) -o
+
+show-version:
+	@erl -eval $(GET_VERSION)
+
+show-versions:
+	@export VERSION=$$(make show-version) && \
+	git grep -n $$VERSION
 
 publish: docs
 	@echo "\nPublishing on hex.pm ...\n"
