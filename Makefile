@@ -73,5 +73,8 @@ publish-docs: docs setup-temp-repo
 	@cd $(DOCS_PROD_DIR) && git push -f $(REPO) master:gh-pages
 	@make teardown-temp-repo
 
-.PHONY: docs
+publish:
+	@echo "\nPublishing on hex.pm ...\n"
+	@./priv/scripts/publish.sh
 
+.PHONY: docs
