@@ -80,18 +80,18 @@ For full context, be sure to see the code in `./examples`.
 
 The following frameworks/HTTP servers are targetted by lanes, with the goal that each will be able to consume the routes defined by lanes:
 
-* [Elli](./docs/plugins/elli.md)
-* [Barista](./docs/plugins/barista.md)
-* [Erlang (inets)](./docs/plugins/inets.md) (partial)
-* [YAWS](./docs/plugins/yaws.md) (partial)
-* [Nova](./docs/plugins/nova.md) (not started)
-* [Cowboy](./docs/plugins/cowboy.md) (not started)
+* [Elli](./docs/src/elli.md)
+* [Barista](./docs/src/barista.md)
+* [Erlang (inets)](./docs/src/inets.md) (partial)
+* [YAWS](./docs/src/yaws.md) (partial)
+* [Nova](./docs/src/nova.md) (not started)
+* [Cowboy](./docs/src/cowboy.md) (not started)
 
 ## License [&#x219F;](#contents)
 
 Apache Version 2 License
 
-Copyright © 2014-2021, Duncan McGreggor <oubiwann@gmail.com>
+Copyright © 2014-2023, Duncan McGreggor <oubiwann@gmail.com>
 
 [//]: ---Named-Links---
 

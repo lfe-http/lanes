@@ -9,7 +9,7 @@ be called in the `out/1` function that is required of a
 For an example of this in action, see
 [this mini REST-api](https://github.com/lfex/yaws-rest-starter/blob/master/src/yrests-store-3.lfe).
 
-A few important things to note here:)
+A few important things to note here:
 
 * Each route is composed of an HTTP verb, a path, and a function to execute
   should both the verb and path match.

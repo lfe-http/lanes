@@ -9,4 +9,4 @@ called.
 
 ## Example
 
-See the [lanes Elli example](../../examples/lanes-elli-example).
+See the [lanes Elli example](https://github.com/lfex/lanes/tree/main/examples/lanes-elli-example).
