@@ -3,7 +3,7 @@
   (export all))
 
 (defun config ()
-  '(#(port 5099)
+  '(#(port 5098)
     #(server_name "lanes-barista-example")
     #(modules (lanes-barista-routes))))
 

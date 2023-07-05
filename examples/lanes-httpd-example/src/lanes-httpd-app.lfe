@@ -3,7 +3,7 @@
   (export all))
 
 (defun config ()
-  '(#(port 5099)
+  '(#(port 5097)
     #(server_name "lanes-httpd-example")
     #(modules (lanes-httpd-routes))))
 
