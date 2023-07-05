@@ -2,8 +2,8 @@ PROJECT = lanes
 ROOT_DIR = $(shell pwd)
 REPO = $(shell git config --get remote.origin.url)
 LFE = _build/default/lib/lfe/bin/lfe
-DOCS_DIR = $(ROOT_DIR)/docs
-DOCS_BUILD_DIR = $(ROOT_DIR)/doc
+DOCS_DIR = $(ROOT_DIR)/priv/mdbook
+DOCS_BUILD_DIR = $(ROOT_DIR)/docs
 LOCAL_DOCS_HOST = localhost
 LOCAL_DOCS_PORT = 5099
 

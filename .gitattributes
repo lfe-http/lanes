@@ -1,0 +1,10 @@
+*.html linguist-vendored=false
+*.css linguist-vendored=false
+*.js  linguist-vendored=false
+*.md  linguist-vendored=false
+*.sh  linguist-vendored=false
+*.eot  linguist-vendored=false
+*.svg  linguist-vendored=false
+*.ttf  linguist-vendored=false
+*.woff  linguist-vendored=false
+*.woff2  linguist-vendored=false
