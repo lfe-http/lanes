@@ -2,7 +2,7 @@
 {application, 'lanes-barista', [
   {description, "Barista support for LFE lanes"},
 
-  {vsn, "0.3.2"},
+  {vsn, "0.3.3"},
 
   {modules, [
     lanes
