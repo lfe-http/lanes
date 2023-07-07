@@ -15,7 +15,7 @@
 
 (defun make-handler-pattern
   ((method path)
-   (list method `(list ,@(lanes.util:path->segments path)) 'req)))
+   (list method `(list ,@(yuri.path:->segments path)) 'req)))
 
 (defun compile-route
   "For each form passed, the last element is always the expression to

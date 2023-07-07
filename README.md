@@ -99,7 +99,7 @@ Copyright © 2014-2023, Duncan McGreggor <oubiwann@gmail.com>
 [logo-large]: priv/images/logo-large.jpg
 [gh-actions-badge]: https://github.com/lfex/lanes/workflows/ci%2Fcd/badge.svg
 [gh-actions]: https://github.com/lfex/lanes/actions
-[lfe]: https://github.com/rvirding/lfe
+[lfe]: https://github.com/lfe/lfe
 [lfe badge]: https://img.shields.io/badge/lfe-2.0-blue.svg
 [erlang badge]: https://img.shields.io/badge/erlang-201%20to%2025-blue.svg
 [versions]: https://github.com/lfex/lanes/blob/master/.github/workflows/cicd.yml
